@@ -4,15 +4,15 @@ import React from "react";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Area, AreaChart } from 'recharts';
 
 const data = [
-  { month: 'Jan', revenue: 4000, users: 2400 },
-  { month: 'Feb', revenue: 3000, users: 1398 },
-  { month: 'Mar', revenue: 2000, users: 9800 },
-  { month: 'Apr', revenue: 2780, users: 3908 },
-  { month: 'May', revenue: 1890, users: 4800 },
-  { month: 'Jun', revenue: 2390, users: 3800 },
-  { month: 'Jul', revenue: 3490, users: 4300 },
-  { month: 'Aug', revenue: 4200, users: 5200 },
-  { month: 'Sep', revenue: 3800, users: 4100 },
+  { month: 'Jan', coolness: 1000, posts: 2400 },
+  { month: 'Feb', coolness: 1300, posts: 1398 },
+  { month: 'Mar', coolness: 1800, posts: 9800 },
+  { month: 'Apr', coolness: 2300, posts: 3908 },
+  { month: 'May', coolness: 2500, posts: 4800 },
+  { month: 'Jun', coolness: 2900, posts: 3800 },
+  { month: 'Jul', coolness: 3100, posts: 4300 },
+  { month: 'Aug', coolness: 3500, posts: 5200 },
+  { month: 'Sep', coolness: 5000, posts: 4100 },
 ];
 
 export default function Graph() {
@@ -30,7 +30,7 @@ export default function Graph() {
         fontSize: "24px",
         fontWeight: "600"
       }}>
-        📈 Revenue & User Growth
+        📈 Posts and Coolness of the Website
       </h3>
       
       <ResponsiveContainer width="100%" height={300}>
@@ -65,7 +65,7 @@ export default function Graph() {
           />
           <Area
             type="monotone"
-            dataKey="users"
+            dataKey="posts"
             stroke="#4ecdc4"
             strokeWidth={3}
             fillOpacity={1}
@@ -73,7 +73,7 @@ export default function Graph() {
           />
           <Area
             type="monotone"
-            dataKey="revenue"
+            dataKey="coolness"
             stroke="#ff6b6b"
             strokeWidth={3}
             fillOpacity={1}
