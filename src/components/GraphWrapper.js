@@ -4,15 +4,15 @@ import React from "react";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Area, AreaChart } from 'recharts';
 
 const data = [
-  { month: 'Jan', coolness: 1000, posts: 2400 },
-  { month: 'Feb', coolness: 1300, posts: 1398 },
-  { month: 'Mar', coolness: 1800, posts: 9800 },
-  { month: 'Apr', coolness: 2300, posts: 3908 },
-  { month: 'May', coolness: 2500, posts: 4800 },
-  { month: 'Jun', coolness: 2900, posts: 3800 },
-  { month: 'Jul', coolness: 3100, posts: 4300 },
-  { month: 'Aug', coolness: 3500, posts: 5200 },
-  { month: 'Sep', coolness: 5000, posts: 4100 },
+  { month: 'Jan', coolness: 1000, posts: 24 },
+  { month: 'Feb', coolness: 1300, posts: 13 },
+  { month: 'Mar', coolness: 1800, posts: 50 },
+  { month: 'Apr', coolness: 2300, posts: 65 },
+  { month: 'May', coolness: 2500, posts: 79 },
+  { month: 'Jun', coolness: 2900, posts: 104 },
+  { month: 'Jul', coolness: 3100, posts: 96 },
+  { month: 'Aug', coolness: 3500, posts: 234 },
+  { month: 'Sep', coolness: 5000, posts: 240 },
 ];
 
 export default function Graph() {
@@ -95,7 +95,7 @@ export default function Graph() {
             backgroundColor: "#ff6b6b", 
             borderRadius: "50%" 
           }}></div>
-          <span style={{ color: "white", fontSize: "14px" }}>Revenue</span>
+          <span style={{ color: "white", fontSize: "14px" }}>Coolness</span>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
           <div style={{ 
@@ -104,7 +104,7 @@ export default function Graph() {
             backgroundColor: "#4ecdc4", 
             borderRadius: "50%" 
           }}></div>
-          <span style={{ color: "white", fontSize: "14px" }}>Users</span>
+          <span style={{ color: "white", fontSize: "14px" }}>Posts</span>
         </div>
       </div>
     </div>
