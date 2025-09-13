@@ -4,15 +4,15 @@ import React from "react";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Area, AreaChart } from 'recharts';
 
 const data = [
-  { month: 'Jan', coolness: 1000, posts: 24 },
-  { month: 'Feb', coolness: 1300, posts: 13 },
-  { month: 'Mar', coolness: 1800, posts: 50 },
-  { month: 'Apr', coolness: 2300, posts: 65 },
-  { month: 'May', coolness: 2500, posts: 79 },
-  { month: 'Jun', coolness: 2900, posts: 104 },
-  { month: 'Jul', coolness: 3100, posts: 96 },
-  { month: 'Aug', coolness: 3500, posts: 234 },
-  { month: 'Sep', coolness: 5000, posts: 240 },
+  { month: 'Jan', coolness: 1000, posts: 240 },
+  { month: 'Feb', coolness: 1300, posts: 130 },
+  { month: 'Mar', coolness: 1800, posts: 500 },
+  { month: 'Apr', coolness: 2300, posts: 650 },
+  { month: 'May', coolness: 2500, posts: 790 },
+  { month: 'Jun', coolness: 2900, posts: 1040 },
+  { month: 'Jul', coolness: 3100, posts: 960 },
+  { month: 'Aug', coolness: 3500, posts: 1340 },
+  { month: 'Sep', coolness: 5000, posts: 2400 },
 ];
 
 export default function Graph() {
