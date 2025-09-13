@@ -1,0 +1,23 @@
+---
+title: "My Third Post: Coolest Interactive Chart"
+date: "2025-09-13"
+---
+
+# My Third Post 🚀  
+
+This one has an **interactive chart** inside it!
+
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+
+<LineChart width={400} height={250} data={[
+  { name: "Jan", value: 30 },
+  { name: "Feb", value: 50 },
+  { name: "Mar", value: 80 }
+]}>
+  <CartesianGrid stroke="#ccc" />
+  <XAxis dataKey="name" />
+  <YAxis />
+  <Tooltip />
+  <Legend />
+  <Line type="monotone" dataKey="value" stroke="#82ca9d" />
+</LineChart>
