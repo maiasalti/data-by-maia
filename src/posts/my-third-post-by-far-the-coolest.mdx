@@ -1,0 +1,56 @@
+---
+title: "My Third Post: An Interactive Chart"
+date: "2025-09-13"
+---
+
+This is my third post, and now it has an **interactive chart** 🎉
+
+import { Line } from 'react-chartjs-2';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+
+// register the chart pieces we need
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
+
+const data = {
+  labels: ['January', 'February', 'March', 'April', 'May'],
+  datasets: [
+    {
+      label: 'Coolness Score',
+      data: [3, 7, 4, 8, 10],
+      borderColor: 'rgb(75, 192, 192)',
+      backgroundColor: 'rgba(75, 192, 192, 0.5)',
+    },
+  ],
+};
+
+const options = {
+  responsive: true,
+  plugins: {
+    legend: {
+      position: 'top',
+    },
+    title: {
+      display: true,
+      text: 'My Coolness Growth Over Time',
+    },
+  },
+};
+
+<Line data={data} options={options} />
