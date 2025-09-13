@@ -3,19 +3,14 @@ import { getSortedPostsData } from "@/lib/posts";
 
 export const dynamic = "force-static";
 
-export default function HomePage() {
+export default function BlogPage() {
   const posts = getSortedPostsData();
 
   return (
     <main className="max-w-5xl mx-auto p-6">
-      <h1 className="text-4xl font-bold text-blue-600 mb-6">Data By Maia</h1>
-      <p className="text-lg mb-10">
-        Welcome to my blog where I share data stories, analysis, and visuals.
-      </p>
+      <h1 className="text-4xl font-bold mb-8">Blog</h1>
 
-      <h2 className="text-2xl font-semibold mb-6">Latest Posts</h2>
-
-      {/* Grid of blog cards */}
+      {/* Grid of blog cards instead of a list */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {posts.map((post) => (
           <Link
