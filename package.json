@@ -18,6 +18,7 @@
     "react": "19.1.0",
     "react-chartjs-2": "^5.3.0",
     "react-dom": "19.1.0",
+    "recharts": "^3.2.0",
     "remark": "^15.0.1",
     "remark-html": "^16.0.1"
   },
