@@ -39,3 +39,14 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+
+# Large data files
+src/data/spotify-seasonal/charts.csv
+src/data/spotify-seasonal/dataset.csv
+
+# Keep the analysis results but ignore raw data
+src/data/spotify-seasonal/*.csv
+
+# Node modules (should already be there)
+node_modules/

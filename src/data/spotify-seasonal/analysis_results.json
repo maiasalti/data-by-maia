@@ -1,0 +1,157 @@
+{
+  "seasonal": {
+    "Winter": {
+      "valence": 0.48936716763006094,
+      "energy": 0.6767167630057831,
+      "danceability": 0.6795005780346841,
+      "acousticness": 0.22738857803467974,
+      "count": 865
+    },
+    "Spring": {
+      "valence": 0.5583421281891631,
+      "energy": 0.6976303671437426,
+      "danceability": 0.6619807093963781,
+      "acousticness": 0.19924987355320622,
+      "count": 1607
+    },
+    "Summer": {
+      "valence": 0.5334484586929612,
+      "energy": 0.6644106041923554,
+      "danceability": 0.6409722564734847,
+      "acousticness": 0.24603656590629103,
+      "count": 1622
+    },
+    "Fall": {
+      "valence": 0.524511984021293,
+      "energy": 0.6616937416777646,
+      "danceability": 0.6428422103861476,
+      "acousticness": 0.2575009905459417,
+      "count": 1502
+    }
+  },
+  "nonSeasonal": {
+    "Fall": {
+      "valence": 0.527184303350968,
+      "energy": 0.6545794532627853,
+      "danceability": 0.6524047619047563,
+      "acousticness": 0.28103652469135937,
+      "count": 1134
+    },
+    "Winter": {
+      "valence": 0.5211678129298488,
+      "energy": 0.6589931224209096,
+      "danceability": 0.7008266850068782,
+      "acousticness": 0.2618056341127912,
+      "count": 727
+    },
+    "Spring": {
+      "valence": 0.5632076302274326,
+      "energy": 0.6872906823184123,
+      "danceability": 0.6752597212032182,
+      "acousticness": 0.22788003976522517,
+      "count": 1363
+    },
+    "Summer": {
+      "valence": 0.5460072727272649,
+      "energy": 0.664539636363633,
+      "danceability": 0.6606509090909044,
+      "acousticness": 0.2651647272727288,
+      "count": 1375
+    }
+  },
+  "monthlyTrends": [
+    {
+      "month": "Jan",
+      "seasonal": 0.4831718750000017,
+      "nonSeasonal": 0.5246794520547963
+    },
+    {
+      "month": "Feb",
+      "seasonal": 0.4960230215827365,
+      "nonSeasonal": 0.5200312500000016
+    },
+    {
+      "month": "Mar",
+      "seasonal": 0.5550311958405564,
+      "nonSeasonal": 0.5491957894736857
+    },
+    {
+      "month": "Apr",
+      "seasonal": 0.5701135135135141,
+      "nonSeasonal": 0.5782483069977438
+    },
+    {
+      "month": "May",
+      "seasonal": 0.5501640625000004,
+      "nonSeasonal": 0.563191011235956
+    },
+    {
+      "month": "Jun",
+      "seasonal": 0.5424254658385094,
+      "nonSeasonal": 0.5561468531468514
+    },
+    {
+      "month": "Jul",
+      "seasonal": 0.5227957371225583,
+      "nonSeasonal": 0.5416000000000012
+    },
+    {
+      "month": "Aug",
+      "seasonal": 0.5339696385542191,
+      "nonSeasonal": 0.5349112426035527
+    },
+    {
+      "month": "Sep",
+      "seasonal": 0.5218030303030317,
+      "nonSeasonal": 0.5336036697247707
+    },
+    {
+      "month": "Oct",
+      "seasonal": 0.5218496240601518,
+      "nonSeasonal": 0.5271475826972017
+    },
+    {
+      "month": "Nov",
+      "seasonal": 0.5383770491803287,
+      "nonSeasonal": 0.5094081632653071
+    },
+    {
+      "month": "Dec",
+      "seasonal": 0,
+      "nonSeasonal": 0.43299999999999994
+    }
+  ],
+  "summary": {
+    "totalTracks": 35118,
+    "seasonalTracks": 5596,
+    "nonSeasonalTracks": 4599,
+    "matchRate": "35.1",
+    "seasonalCountries": [
+      "us",
+      "gb",
+      "se",
+      "de",
+      "ca",
+      "fr",
+      "nl",
+      "no",
+      "pl",
+      "ch",
+      "dk",
+      "fi"
+    ],
+    "nonSeasonalCountries": [
+      "sg",
+      "au",
+      "br",
+      "ph",
+      "th",
+      "my",
+      "id",
+      "mx",
+      "ve",
+      "co"
+    ],
+    "dateRange": "2022-2024"
+  }
+}
