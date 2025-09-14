@@ -1,12 +1,16 @@
-import nextMDX from '@next/mdx';
+import nextMDX from "@next/mdx";
 
 const withMDX = nextMDX({
-  extension: /\.mdx?$/
+  extension: /\.mdx?$/,
+  options: {
+    providerImportSource: "@mdx-js/react",
+  },
 });
 
 const nextConfig = {
-  pageExtensions: ['js', 'jsx', 'md', 'mdx']
+  pageExtensions: ["js", "jsx", "md", "mdx"],
 };
 
 export default withMDX(nextConfig);
+
 
