@@ -116,7 +116,7 @@ async function analyzeSpotifyData() {
 
     // Define country groups (using lowercase 2-letter codes from your data)
     const seasonalCountries = ['us', 'gb', 'se', 'de', 'ca', 'fr', 'nl', 'no', 'pl', 'ch', 'dk', 'fi'];
-    const nonSeasonalCountries = ['sg', 'au', 'br', 'ph', 'th', 'my', 'id', 'mx', 've', 'co'];
+    const nonSeasonalCountries = ['sg', 'br', 'ph', 'th', 'my', 'id', 'mx', 've', 'co'];
 
     const seasonalData = joinedData.filter(row => seasonalCountries.includes(row.country));
     const nonSeasonalData = joinedData.filter(row => nonSeasonalCountries.includes(row.country));
