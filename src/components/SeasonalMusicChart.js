@@ -3,7 +3,6 @@
 import React from "react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar } from 'recharts';
 
-// Real data from your Spotify analysis
 const seasonalData = [
   { season: 'Winter', valence: 0.489, energy: 0.677, danceability: 0.680, acousticness: 0.227, count: 865 },
   { season: 'Spring', valence: 0.558, energy: 0.698, danceability: 0.662, acousticness: 0.199, count: 1607 },
@@ -140,7 +139,6 @@ export function ValenceComparisonChart() {
 }
 
 export function SeasonalTrendLine() {
-  // Filter out December data with 0 values
   const trendData = monthlyTrends.filter(item => item.seasonal > 0);
 
   return (
@@ -221,7 +219,7 @@ export function SeasonalTrendLine() {
 }
 
 export function AudioFeaturesRadar() {
-  // Calculate averages across seasons for both groups
+
   const seasonalAvg = {
     valence: seasonalData.reduce((sum, s) => sum + s.valence, 0) / 4,
     energy: seasonalData.reduce((sum, s) => sum + s.energy, 0) / 4,
