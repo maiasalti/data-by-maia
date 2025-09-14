@@ -3,7 +3,6 @@ const csv = require('csv-parser');
 const Papa = require('papaparse');
 const path = require('path');
 
-// Read small CSV files normally
 function readSmallCSV(filePath) {
   console.log(`Reading small file: ${filePath}`);
   const csvFile = fs.readFileSync(filePath, 'utf8');
@@ -14,7 +13,6 @@ function readSmallCSV(filePath) {
   }).data;
 }
 
-// Stream large CSV files
 function streamLargeCSV(filePath, maxRows = 100000) {
   return new Promise((resolve, reject) => {
     const results = [];
@@ -25,7 +23,6 @@ function streamLargeCSV(filePath, maxRows = 100000) {
     fs.createReadStream(filePath)
       .pipe(csv())
       .on('data', (data) => {
-        // Filter to 2022-2024 as we read
         const year = new Date(data.date).getFullYear();
         if (year >= 2022 && year <= 2024 && rowCount < maxRows) {
           results.push(data);
@@ -46,12 +43,10 @@ function streamLargeCSV(filePath, maxRows = 100000) {
   });
 }
 
-// Main analysis function
 async function analyzeSpotifyData() {
   console.log('Starting Spotify seasonal analysis...');
   
   try {
-    // Load datasets
     console.log('Loading chart data (streaming)...');
     const chartData = await streamLargeCSV(
       path.join(__dirname, '../data/spotify-seasonal/charts.csv'), 
@@ -66,7 +61,6 @@ async function analyzeSpotifyData() {
     console.log(`Chart data loaded: ${chartData.length} rows`);
     console.log(`Track features loaded: ${trackFeatures.length} rows`);
     
-    // Process chart data
     const cleanedChartData = chartData
       .filter(row => row.date && row.country && row.track_id)
       .map(row => {
@@ -82,7 +76,6 @@ async function analyzeSpotifyData() {
 
     console.log(`Cleaned chart data: ${cleanedChartData.length} rows`);
 
-    // Create lookup for track features using track_id
     console.log('Creating track features lookup using track_id...');
     const featuresLookup = {};
     trackFeatures.forEach((track, index) => {
@@ -97,7 +90,6 @@ async function analyzeSpotifyData() {
 
     console.log(`Features lookup created: ${Object.keys(featuresLookup).length} tracks`);
 
-    // Join datasets using track_id
     console.log('Joining datasets using track_id...');
     const joinedData = cleanedChartData
       .map(row => ({
@@ -114,7 +106,6 @@ async function analyzeSpotifyData() {
       return;
     }
 
-    // Define country groups (using lowercase 2-letter codes from your data)
     const seasonalCountries = ['us', 'gb', 'se', 'de', 'ca', 'fr', 'nl', 'no', 'pl', 'ch', 'dk', 'fi'];
     const nonSeasonalCountries = ['sg', 'br', 'ph', 'th', 'my', 'id', 'mx', 've', 'co'];
 
@@ -124,15 +115,13 @@ async function analyzeSpotifyData() {
     console.log(`Seasonal countries data: ${seasonalData.length} rows`);
     console.log(`Non-seasonal countries data: ${nonSeasonalData.length} rows`);
 
-    // Calculate seasonal averages
     console.log('Calculating seasonal averages...');
     const seasonalAnalysis = calculateSeasonalAverages(seasonalData);
     const nonSeasonalAnalysis = calculateSeasonalAverages(nonSeasonalData);
     
-    // Calculate monthly trends
+    // monthly trends
     const monthlyTrends = calculateMonthlyTrends(seasonalData, nonSeasonalData);
 
-    // Export results
     const results = {
       seasonal: seasonalAnalysis,
       nonSeasonal: nonSeasonalAnalysis,
@@ -148,7 +137,6 @@ async function analyzeSpotifyData() {
       }
     };
 
-    // Save results
     const outputPath = path.join(__dirname, '../data/spotify-seasonal/analysis_results.json');
     fs.writeFileSync(outputPath, JSON.stringify(results, null, 2));
 
@@ -223,7 +211,6 @@ function average(array, property) {
   return values.length > 0 ? values.reduce((a, b) => a + b, 0) / values.length : 0;
 }
 
-// Run the analysis
 if (require.main === module) {
   analyzeSpotifyData().catch(console.error);
 }
