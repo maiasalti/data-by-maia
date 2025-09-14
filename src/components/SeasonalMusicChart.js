@@ -81,6 +81,12 @@ export function ValenceComparisonChart() {
             axisLine={{ stroke: '#fff' }}
             tickLine={{ stroke: '#fff' }}
             domain={[0.45, 0.6]}
+            label={{ 
+              value: 'Valence Score', 
+              angle: -90, 
+              position: 'insideLeft',
+              style: { textAnchor: 'middle', fill: '#fff', fontSize: '14px' }
+            }}
           />
           <Tooltip 
             contentStyle={{
@@ -164,7 +170,7 @@ export function SeasonalTrendLine() {
         marginBottom: '30px',
         fontSize: '16px'
       }}>
-        The seasonal dip: January-February vs. spring peak in April
+        The January-February dip vs. spring peak in April
       </p>
       
       <ResponsiveContainer width="100%" height={350}>
@@ -183,6 +189,12 @@ export function SeasonalTrendLine() {
             axisLine={{ stroke: '#fff' }}
             tickLine={{ stroke: '#fff' }}
             domain={[0.45, 0.6]}
+            label={{ 
+              value: 'Valence Score', 
+              angle: -90, 
+              position: 'insideLeft',
+              style: { textAnchor: 'middle', fill: '#fff', fontSize: '14px' }
+            }}
           />
           <Tooltip 
             contentStyle={{
@@ -279,6 +291,11 @@ export function AudioFeaturesRadar() {
             domain={[0, 1]} 
             tick={{ fill: '#fff', fontSize: 12 }}
             tickCount={6}
+            label={{ 
+              value: 'Score (0-1)', 
+              position: 'insideTopLeft',
+              style: { textAnchor: 'middle', fill: '#fff', fontSize: '12px' }
+            }}
           />
           <Radar
             name="Seasonal"
