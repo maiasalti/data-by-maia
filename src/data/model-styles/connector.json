@@ -1,0 +1,441 @@
+[{
+  "model": "gemini",
+  "connector": "also",
+  "connector_count": "5",
+  "pct_of_connectors": "2.53"
+}, {
+  "model": "claude",
+  "connector": "also",
+  "connector_count": "4",
+  "pct_of_connectors": "1.9"
+}, {
+  "model": "chatgpt",
+  "connector": "also",
+  "connector_count": "1",
+  "pct_of_connectors": "0.34"
+}, {
+  "model": "chatgpt",
+  "connector": "although",
+  "connector_count": "1",
+  "pct_of_connectors": "0.34"
+}, {
+  "model": "gemini",
+  "connector": "and",
+  "connector_count": "90",
+  "pct_of_connectors": "45.45"
+}, {
+  "model": "chatgpt",
+  "connector": "and",
+  "connector_count": "101",
+  "pct_of_connectors": "34.83"
+}, {
+  "model": "claude",
+  "connector": "and",
+  "connector_count": "71",
+  "pct_of_connectors": "33.65"
+}, {
+  "model": "claude",
+  "connector": "anyway",
+  "connector_count": "1",
+  "pct_of_connectors": "0.47"
+}, {
+  "model": "claude",
+  "connector": "as",
+  "connector_count": "29",
+  "pct_of_connectors": "13.74"
+}, {
+  "model": "chatgpt",
+  "connector": "as",
+  "connector_count": "27",
+  "pct_of_connectors": "9.31"
+}, {
+  "model": "gemini",
+  "connector": "as",
+  "connector_count": "6",
+  "pct_of_connectors": "3.03"
+}, {
+  "model": "claude",
+  "connector": "because",
+  "connector_count": "3",
+  "pct_of_connectors": "1.42"
+}, {
+  "model": "chatgpt",
+  "connector": "because",
+  "connector_count": "3",
+  "pct_of_connectors": "1.03"
+}, {
+  "model": "gemini",
+  "connector": "because",
+  "connector_count": "1",
+  "pct_of_connectors": "0.51"
+}, {
+  "model": "gemini",
+  "connector": "before",
+  "connector_count": "4",
+  "pct_of_connectors": "2.02"
+}, {
+  "model": "claude",
+  "connector": "before",
+  "connector_count": "1",
+  "pct_of_connectors": "0.47"
+}, {
+  "model": "chatgpt",
+  "connector": "before",
+  "connector_count": "1",
+  "pct_of_connectors": "0.34"
+}, {
+  "model": "chatgpt",
+  "connector": "but",
+  "connector_count": "39",
+  "pct_of_connectors": "13.45"
+}, {
+  "model": "claude",
+  "connector": "but",
+  "connector_count": "24",
+  "pct_of_connectors": "11.37"
+}, {
+  "model": "gemini",
+  "connector": "but",
+  "connector_count": "21",
+  "pct_of_connectors": "10.61"
+}, {
+  "model": "claude",
+  "connector": "despite",
+  "connector_count": "2",
+  "pct_of_connectors": "0.95"
+}, {
+  "model": "chatgpt",
+  "connector": "during",
+  "connector_count": "2",
+  "pct_of_connectors": "0.69"
+}, {
+  "model": "chatgpt",
+  "connector": "especially",
+  "connector_count": "1",
+  "pct_of_connectors": "0.34"
+}, {
+  "model": "gemini",
+  "connector": "first",
+  "connector_count": "3",
+  "pct_of_connectors": "1.52"
+}, {
+  "model": "chatgpt",
+  "connector": "first",
+  "connector_count": "3",
+  "pct_of_connectors": "1.03"
+}, {
+  "model": "claude",
+  "connector": "first",
+  "connector_count": "1",
+  "pct_of_connectors": "0.47"
+}, {
+  "model": "gemini",
+  "connector": "furthermore",
+  "connector_count": "2",
+  "pct_of_connectors": "1.01"
+}, {
+  "model": "chatgpt",
+  "connector": "granted",
+  "connector_count": "1",
+  "pct_of_connectors": "0.34"
+}, {
+  "model": "chatgpt",
+  "connector": "however",
+  "connector_count": "2",
+  "pct_of_connectors": "0.69"
+}, {
+  "model": "claude",
+  "connector": "however",
+  "connector_count": "1",
+  "pct_of_connectors": "0.47"
+}, {
+  "model": "claude",
+  "connector": "if",
+  "connector_count": "11",
+  "pct_of_connectors": "5.21"
+}, {
+  "model": "gemini",
+  "connector": "if",
+  "connector_count": "5",
+  "pct_of_connectors": "2.53"
+}, {
+  "model": "chatgpt",
+  "connector": "if",
+  "connector_count": "7",
+  "pct_of_connectors": "2.41"
+}, {
+  "model": "chatgpt",
+  "connector": "immediately",
+  "connector_count": "1",
+  "pct_of_connectors": "0.34"
+}, {
+  "model": "chatgpt",
+  "connector": "including",
+  "connector_count": "1",
+  "pct_of_connectors": "0.34"
+}, {
+  "model": "gemini",
+  "connector": "indeed",
+  "connector_count": "1",
+  "pct_of_connectors": "0.51"
+}, {
+  "model": "chatgpt",
+  "connector": "instead",
+  "connector_count": "2",
+  "pct_of_connectors": "0.69"
+}, {
+  "model": "claude",
+  "connector": "instead",
+  "connector_count": "1",
+  "pct_of_connectors": "0.47"
+}, {
+  "model": "chatgpt",
+  "connector": "like",
+  "connector_count": "15",
+  "pct_of_connectors": "5.17"
+}, {
+  "model": "gemini",
+  "connector": "like",
+  "connector_count": "10",
+  "pct_of_connectors": "5.05"
+}, {
+  "model": "claude",
+  "connector": "like",
+  "connector_count": "9",
+  "pct_of_connectors": "4.27"
+}, {
+  "model": "chatgpt",
+  "connector": "moreover",
+  "connector_count": "1",
+  "pct_of_connectors": "0.34"
+}, {
+  "model": "gemini",
+  "connector": "next",
+  "connector_count": "4",
+  "pct_of_connectors": "2.02"
+}, {
+  "model": "chatgpt",
+  "connector": "next",
+  "connector_count": "4",
+  "pct_of_connectors": "1.38"
+}, {
+  "model": "claude",
+  "connector": "next",
+  "connector_count": "1",
+  "pct_of_connectors": "0.47"
+}, {
+  "model": "gemini",
+  "connector": "now",
+  "connector_count": "7",
+  "pct_of_connectors": "3.54"
+}, {
+  "model": "chatgpt",
+  "connector": "now",
+  "connector_count": "3",
+  "pct_of_connectors": "1.03"
+}, {
+  "model": "claude",
+  "connector": "now",
+  "connector_count": "2",
+  "pct_of_connectors": "0.95"
+}, {
+  "model": "gemini",
+  "connector": "once",
+  "connector_count": "2",
+  "pct_of_connectors": "1.01"
+}, {
+  "model": "chatgpt",
+  "connector": "once",
+  "connector_count": "2",
+  "pct_of_connectors": "0.69"
+}, {
+  "model": "claude",
+  "connector": "otherwise",
+  "connector_count": "1",
+  "pct_of_connectors": "0.47"
+}, {
+  "model": "claude",
+  "connector": "particularly",
+  "connector_count": "2",
+  "pct_of_connectors": "0.95"
+}, {
+  "model": "gemini",
+  "connector": "second",
+  "connector_count": "1",
+  "pct_of_connectors": "0.51"
+}, {
+  "model": "claude",
+  "connector": "similarly",
+  "connector_count": "1",
+  "pct_of_connectors": "0.47"
+}, {
+  "model": "chatgpt",
+  "connector": "since",
+  "connector_count": "1",
+  "pct_of_connectors": "0.34"
+}, {
+  "model": "chatgpt",
+  "connector": "so",
+  "connector_count": "15",
+  "pct_of_connectors": "5.17"
+}, {
+  "model": "gemini",
+  "connector": "so",
+  "connector_count": "9",
+  "pct_of_connectors": "4.55"
+}, {
+  "model": "claude",
+  "connector": "so",
+  "connector_count": "5",
+  "pct_of_connectors": "2.37"
+}, {
+  "model": "chatgpt",
+  "connector": "still",
+  "connector_count": "8",
+  "pct_of_connectors": "2.76"
+}, {
+  "model": "claude",
+  "connector": "still",
+  "connector_count": "3",
+  "pct_of_connectors": "1.42"
+}, {
+  "model": "gemini",
+  "connector": "still",
+  "connector_count": "1",
+  "pct_of_connectors": "0.51"
+}, {
+  "model": "gemini",
+  "connector": "then",
+  "connector_count": "9",
+  "pct_of_connectors": "4.55"
+}, {
+  "model": "chatgpt",
+  "connector": "then",
+  "connector_count": "4",
+  "pct_of_connectors": "1.38"
+}, {
+  "model": "claude",
+  "connector": "then",
+  "connector_count": "1",
+  "pct_of_connectors": "0.47"
+}, {
+  "model": "gemini",
+  "connector": "third",
+  "connector_count": "1",
+  "pct_of_connectors": "0.51"
+}, {
+  "model": "claude",
+  "connector": "though",
+  "connector_count": "2",
+  "pct_of_connectors": "0.95"
+}, {
+  "model": "chatgpt",
+  "connector": "though",
+  "connector_count": "2",
+  "pct_of_connectors": "0.69"
+}, {
+  "model": "chatgpt",
+  "connector": "thus",
+  "connector_count": "1",
+  "pct_of_connectors": "0.34"
+}, {
+  "model": "chatgpt",
+  "connector": "too",
+  "connector_count": "3",
+  "pct_of_connectors": "1.03"
+}, {
+  "model": "gemini",
+  "connector": "too",
+  "connector_count": "2",
+  "pct_of_connectors": "1.01"
+}, {
+  "model": "claude",
+  "connector": "too",
+  "connector_count": "2",
+  "pct_of_connectors": "0.95"
+}, {
+  "model": "chatgpt",
+  "connector": "unless",
+  "connector_count": "1",
+  "pct_of_connectors": "0.34"
+}, {
+  "model": "gemini",
+  "connector": "until",
+  "connector_count": "1",
+  "pct_of_connectors": "0.51"
+}, {
+  "model": "chatgpt",
+  "connector": "well",
+  "connector_count": "6",
+  "pct_of_connectors": "2.07"
+}, {
+  "model": "claude",
+  "connector": "well",
+  "connector_count": "2",
+  "pct_of_connectors": "0.95"
+}, {
+  "model": "gemini",
+  "connector": "well",
+  "connector_count": "1",
+  "pct_of_connectors": "0.51"
+}, {
+  "model": "claude",
+  "connector": "when",
+  "connector_count": "10",
+  "pct_of_connectors": "4.74"
+}, {
+  "model": "chatgpt",
+  "connector": "when",
+  "connector_count": "9",
+  "pct_of_connectors": "3.1"
+}, {
+  "model": "gemini",
+  "connector": "when",
+  "connector_count": "5",
+  "pct_of_connectors": "2.53"
+}, {
+  "model": "chatgpt",
+  "connector": "whereas",
+  "connector_count": "1",
+  "pct_of_connectors": "0.34"
+}, {
+  "model": "claude",
+  "connector": "whether",
+  "connector_count": "3",
+  "pct_of_connectors": "1.42"
+}, {
+  "model": "chatgpt",
+  "connector": "whether",
+  "connector_count": "4",
+  "pct_of_connectors": "1.38"
+}, {
+  "model": "claude",
+  "connector": "while",
+  "connector_count": "13",
+  "pct_of_connectors": "6.16"
+}, {
+  "model": "chatgpt",
+  "connector": "while",
+  "connector_count": "9",
+  "pct_of_connectors": "3.1"
+}, {
+  "model": "gemini",
+  "connector": "while",
+  "connector_count": "4",
+  "pct_of_connectors": "2.02"
+}, {
+  "model": "chatgpt",
+  "connector": "yet",
+  "connector_count": "8",
+  "pct_of_connectors": "2.76"
+}, {
+  "model": "claude",
+  "connector": "yet",
+  "connector_count": "5",
+  "pct_of_connectors": "2.37"
+}, {
+  "model": "gemini",
+  "connector": "yet",
+  "connector_count": "3",
+  "pct_of_connectors": "1.52"
+}]

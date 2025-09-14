@@ -1,0 +1,109 @@
+[{
+  "model": "chatgpt",
+  "punctuation": "semicolon",
+  "pct": "0.47"
+}, {
+  "model": "gemini",
+  "punctuation": "semicolon",
+  "pct": "0.69"
+}, {
+  "model": "claude",
+  "punctuation": "semicolon",
+  "pct": "0.0"
+}, {
+  "model": "chatgpt",
+  "punctuation": "question",
+  "pct": "2.22"
+}, {
+  "model": "gemini",
+  "punctuation": "question",
+  "pct": "5.49"
+}, {
+  "model": "claude",
+  "punctuation": "question",
+  "pct": "5.29"
+}, {
+  "model": "chatgpt",
+  "punctuation": "period",
+  "pct": "37.82"
+}, {
+  "model": "gemini",
+  "punctuation": "period",
+  "pct": "45.45"
+}, {
+  "model": "claude",
+  "punctuation": "period",
+  "pct": "39.8"
+}, {
+  "model": "chatgpt",
+  "punctuation": "parentheses",
+  "pct": "0.79"
+}, {
+  "model": "gemini",
+  "punctuation": "parentheses",
+  "pct": "0.17"
+}, {
+  "model": "claude",
+  "punctuation": "parentheses",
+  "pct": "0.0"
+}, {
+  "model": "chatgpt",
+  "punctuation": "exclamation",
+  "pct": "0.79"
+}, {
+  "model": "gemini",
+  "punctuation": "exclamation",
+  "pct": "1.72"
+}, {
+  "model": "claude",
+  "punctuation": "exclamation",
+  "pct": "1.96"
+}, {
+  "model": "chatgpt",
+  "punctuation": "em_dash",
+  "pct": "3.96"
+}, {
+  "model": "gemini",
+  "punctuation": "em_dash",
+  "pct": "0.51"
+}, {
+  "model": "claude",
+  "punctuation": "em_dash",
+  "pct": "7.06"
+}, {
+  "model": "chatgpt",
+  "punctuation": "ellipsis",
+  "pct": "0.0"
+}, {
+  "model": "gemini",
+  "punctuation": "ellipsis",
+  "pct": "0.51"
+}, {
+  "model": "claude",
+  "punctuation": "ellipsis",
+  "pct": "2.35"
+}, {
+  "model": "chatgpt",
+  "punctuation": "dash_single",
+  "pct": "1.74"
+}, {
+  "model": "gemini",
+  "punctuation": "dash_single",
+  "pct": "2.74"
+}, {
+  "model": "claude",
+  "punctuation": "dash_single",
+  "pct": "3.92"
+}, {
+  "model": "chatgpt",
+  "punctuation": "comma",
+  "pct": "52.22"
+}, {
+  "model": "gemini",
+  "punctuation": "comma",
+  "pct": "42.71"
+}, {
+  "model": "claude",
+  "punctuation": "comma",
+  "pct": "39.61"
+}]

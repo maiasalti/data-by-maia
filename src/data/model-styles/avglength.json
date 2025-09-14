@@ -1,0 +1,13 @@
+[{
+  "model": "chatgpt",
+  "avg_sentence_length": "15.899224806201548",
+  "sentence_count": "258"
+}, {
+  "model": "gemini",
+  "avg_sentence_length": "12.580327868852459",
+  "sentence_count": "305"
+}, {
+  "model": "claude",
+  "avg_sentence_length": "14.586206896551726",
+  "sentence_count": "232"
+}]

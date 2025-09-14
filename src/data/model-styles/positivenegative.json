@@ -1,0 +1,19 @@
+[{
+  "model": "chatgpt",
+  "positive_words": "40",
+  "negative_words": "24",
+  "pct_positive": "62.5",
+  "pct_negative": "37.5"
+}, {
+  "model": "claude",
+  "positive_words": "40",
+  "negative_words": "15",
+  "pct_positive": "72.73",
+  "pct_negative": "27.27"
+}, {
+  "model": "gemini",
+  "positive_words": "34",
+  "negative_words": "30",
+  "pct_positive": "53.13",
+  "pct_negative": "46.88"
+}]
