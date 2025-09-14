@@ -1,5 +1,11 @@
 import Link from "next/link";
 import { getSortedPostsData } from "@/lib/posts";
+import { Lato } from 'next/font/google'
+
+const lato = Lato({
+  subsets: ['latin'],
+  weight: ['400', '700']
+})
 
 export const dynamic = "force-static";
 
@@ -8,10 +14,12 @@ export default function HomePage() {
 
   return (
     <main className="max-w-5xl mx-auto p-6">
-      <h1 className="text-4xl font-bold text-blue-600 mb-6">Data By Maia</h1>
-      <p className="text-lg mb-10">
-        Welcome to my blog where I share data stories, analysis, and visuals.
-      </p>
+  <h1 className={`${lato.className} text-6xl font-bold text-blue-400 mb-6`}>
+  Data By Maia
+  </h1>
+  <p className={`${lato.className} text-lg mb-10`}>
+  Welcome to my blog where I share data stories, analysis, and visuals.
+  </p>
 
       <h2 className="text-2xl font-semibold mb-6">Latest Posts</h2>
 
