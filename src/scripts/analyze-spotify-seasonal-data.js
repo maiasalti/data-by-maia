@@ -24,7 +24,7 @@ function streamLargeCSV(filePath, maxRows = 100000) {
       .pipe(csv())
       .on('data', (data) => {
         const year = new Date(data.date).getFullYear();
-        if (year >= 2022 && year <= 2024 && rowCount < maxRows) {
+        if (year >= 2015 && year <= 2019 && rowCount < maxRows) {
           results.push(data);
           rowCount++;
           
@@ -34,7 +34,7 @@ function streamLargeCSV(filePath, maxRows = 100000) {
         }
       })
       .on('end', () => {
-        console.log(`Finished streaming. Collected ${results.length} rows from 2022-2024`);
+        console.log(`Finished streaming. Collected ${results.length} rows from 2015-2019`);
         resolve(results);
       })
       .on('error', (err) => {
@@ -133,7 +133,7 @@ async function analyzeSpotifyData() {
         matchRate: (joinedData.length / cleanedChartData.length * 100).toFixed(1),
         seasonalCountries: seasonalCountries,
         nonSeasonalCountries: nonSeasonalCountries,
-        dateRange: '2022-2024'
+        dateRange: '2015-2019'
       }
     };
 
