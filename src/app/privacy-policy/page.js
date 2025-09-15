@@ -17,16 +17,11 @@ export default function PrivacyPolicy() {
         <section>
           <h2 className="text-2xl font-semibold mt-8 mb-4">Information We Collect</h2>
           
-          <h3 className="text-xl font-medium mt-6 mb-3">Information You Provide to Us</h3>
-          <ul className="list-disc pl-6 space-y-2">
-            <li><strong>Contact Information:</strong> When you contact us through our contact form or email, we collect your name, email address, and any message you send.</li>
-          </ul>
 
           <h3 className="text-xl font-medium mt-6 mb-3">Information Collected Automatically</h3>
           <ul className="list-disc pl-6 space-y-2">
             <li><strong>Analytics Data:</strong> We use Google Analytics to collect anonymous information about how visitors use our site, including pages visited, time spent on the site, and general location data.</li>
             <li><strong>Technical Information:</strong> We automatically collect your IP address, browser type, operating system, and device information.</li>
-            <li><strong>Cookies:</strong> We use cookies to improve your experience on our site and for analytics purposes.</li>
           </ul>
         </section>
 
@@ -77,7 +72,6 @@ export default function PrivacyPolicy() {
           <h2 className="text-2xl font-semibold mt-8 mb-4">Data Retention</h2>
           <p>We retain your personal information for as long as necessary to fulfill the purposes outlined in this policy:</p>
           <ul className="list-disc pl-6 space-y-2">
-            <li>Contact form inquiries: 2 years</li>
             <li>Analytics data: As determined by Google Analytics settings (typically 26 months)</li>
           </ul>
         </section>

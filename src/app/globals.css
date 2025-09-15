@@ -39,3 +39,7 @@ body {
 .recharts-tooltip-label {
   color: #fff !important;
 }
+
+p + ul {
+  margin-top: 0;  /* remove extra spacing btwn subtitle and list */
+}
