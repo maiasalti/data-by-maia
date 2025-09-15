@@ -11,7 +11,7 @@ export default function PrivacyPolicy() {
 
         <section>
           <h2 className="text-2xl font-semibold mt-8 mb-4">Introduction</h2>
-          <p>This Privacy Policy describes how Data by Maia ("we," "us," or "our") collects, uses, and protects your personal information when you visit our website at databymaia.com (the "Site").</p>
+          <p>This Privacy Policy describes how Data by Maia (&quot;we,&quot; &quot;us,&quot; or &quot;our&quot;) collects, uses, and protects your personal information when you visit our website at databymaia.com (the &quot;Site&quot;).</p>
         </section>
 
         <section>
@@ -60,7 +60,7 @@ export default function PrivacyPolicy() {
           <h2 className="text-2xl font-semibold mt-8 mb-4">Third-Party Services</h2>
           
           <h3 className="text-xl font-medium mt-6 mb-3">Google Analytics</h3>
-          <p>We use Google Analytics to analyze website traffic. Google Analytics may collect and process data about your use of our site. For more information, please review <a href="https://policies.google.com/privacy" className="text-blue-600 hover:underline">Google's Privacy Policy</a>. You can opt-out of Google Analytics using <a href="https://tools.google.com/dlpage/gaoptout" className="text-blue-600 hover:underline">Google's browser opt-out tool</a>.</p>
+          <p>We use Google Analytics to analyze website traffic. Google Analytics may collect and process data about your use of our site. For more information, please review <a href="https://policies.google.com/privacy" className="text-blue-600 hover:underline">Google&apos;s Privacy Policy</a>. You can opt-out of Google Analytics using <a href="https://tools.google.com/dlpage/gaoptout" className="text-blue-600 hover:underline">Google&apos;s browser opt-out tool</a>.</p>
         </section>
 
         <section>
@@ -104,7 +104,7 @@ export default function PrivacyPolicy() {
 
           <h3 className="text-xl font-medium mt-6 mb-3">For California Residents (CCPA Rights)</h3>
           <ul className="list-disc pl-6 space-y-2">
-            <li><strong>Right to Know:</strong> What personal information we collect and how it's used</li>
+            <li><strong>Right to Know:</strong> What personal information we collect and how it&apos;s used</li>
             <li><strong>Right to Delete:</strong> Request deletion of your personal information</li>
             <li><strong>Right to Opt-Out:</strong> We do not sell personal information</li>
             <li><strong>Right to Non-Discrimination:</strong> Equal service regardless of privacy choices</li>
@@ -117,7 +117,7 @@ export default function PrivacyPolicy() {
         </section>
 
         <section>
-          <h2 className="text-2xl font-semibold mt-8 mb-4">Children's Privacy</h2>
+          <h2 className="text-2xl font-semibold mt-8 mb-4">Children&apos;s Privacy</h2>
           <p>Our website is not directed to children under 13, and we do not knowingly collect personal information from children under 13. If we learn that we have collected such information, we will delete it promptly.</p>
         </section>
 
@@ -128,7 +128,7 @@ export default function PrivacyPolicy() {
 
         <section>
           <h2 className="text-2xl font-semibold mt-8 mb-4">Changes to This Privacy Policy</h2>
-          <p>We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last Updated" date.</p>
+          <p>We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the &quot;Last Updated&quot; date.</p>
         </section>
 
         <section>
