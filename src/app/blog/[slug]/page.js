@@ -2,13 +2,13 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { MDXRemote } from "next-mdx-remote/rsc";
-import Graph from "../../../components/GraphWrapper";
 import { ValenceComparisonChart, AudioFeaturesRadar, SeasonalTrendLine } from "../../../components/SeasonalMusicChart";
+import { SentenceLengthComparison, SentimentAnalysis, ConnectorWordsAnalysis, PunctuationAnalysis } from "../../../components/AIModelCharts";
 
 const postsDirectory = path.join(process.cwd(), "src/posts");
 
 export default async function PostPage({ params }) {
-  const { slug } = params;
+  const { slug } = await params;;
 
   const mdxPath = path.join(postsDirectory, `${slug}.mdx`);
   const mdPath = path.join(postsDirectory, `${slug}.md`);
@@ -33,6 +33,22 @@ export default async function PostPage({ params }) {
                 margin-top: 3rem !important;
                 margin-bottom: 1.5rem !important;
               }
+                .prose ul {
+                color: white !important;
+                list-style-type: disc !important;
+                margin-left: 1.5rem !important;
+              }
+
+              .prose li {
+                color: white !important;
+                margin-bottom: 0.5rem !important;
+              }
+
+              .prose ol {
+                color: white !important;
+                list-style-type: decimal !important;
+                margin-left: 1.5rem !important;
+              }
             `,
           }}
         />
@@ -40,10 +56,13 @@ export default async function PostPage({ params }) {
           <MDXRemote
             source={content}
             components={{
-              Graph,
               ValenceComparisonChart,
               AudioFeaturesRadar,
               SeasonalTrendLine,
+              SentenceLengthComparison,
+              SentimentAnalysis,
+              ConnectorWordsAnalysis,
+              PunctuationAnalysis,
             }}
           />
         </div>
