@@ -12,20 +12,26 @@ export const dynamic = "force-static";
 
 export default function HomePage() {
   const posts = getSortedPostsData();
-
   return (
     <main className="max-w-5xl mx-auto p-6">
-      <h1
-        className={`${lato.className} text-6xl font-bold text-blue-400 mb-6`}
-      >
-        Data By Maia
-      </h1>
-      <p className={`${lato.className} text-lg mb-10`}>
+      {/* Large logo replacing the title */}
+      <div className="text-center mb-6">
+        <Image
+          src="/data-by-maia-logo.png"
+          alt="Data by Maia"
+          width={500}
+          height={200}
+          priority
+          className="h-40 w-auto mx-auto mb-6"
+        />
+      </div>
+      
+      <p className={`${lato.className} text-lg mb-10 text-center`}>
         Welcome to my blog where I share data stories, analysis, and visuals.
       </p>
-
+      
       <h2 className="text-2xl font-semibold mb-6">Latest Posts</h2>
-
+      
       {/* Grid of blog cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {posts.map((post) => (
@@ -56,4 +62,3 @@ export default function HomePage() {
     </main>
   );
 }
-
