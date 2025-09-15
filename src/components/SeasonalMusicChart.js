@@ -91,7 +91,7 @@ export function ValenceComparisonChart() {
           <Tooltip 
             contentStyle={{
               backgroundColor: 'rgba(0,0,0,0.9)',
-              border: '1px solid #ff1493',
+              border: '1px solid #800020',
               borderRadius: '8px',
               color: '#fff'
             }}
@@ -102,13 +102,13 @@ export function ValenceComparisonChart() {
           />
           <Bar 
             dataKey="seasonal" 
-            fill="#ff1493"
+            fill="#800020"
             name="seasonal"
             radius={[4, 4, 0, 0]}
           />
           <Bar 
             dataKey="nonSeasonal" 
-            fill="#00ff7f"
+            fill="#87CEEB"
             name="nonSeasonal"
             radius={[4, 4, 0, 0]}
           />
@@ -125,7 +125,7 @@ export function ValenceComparisonChart() {
           <div style={{ 
             width: '15px', 
             height: '15px', 
-            backgroundColor: '#ff1493', 
+            backgroundColor: '#800020', 
             borderRadius: '3px' 
           }}></div>
           <span style={{ color: '#fff', fontSize: '14px' }}>Seasonal Countries</span>
@@ -134,7 +134,7 @@ export function ValenceComparisonChart() {
           <div style={{ 
             width: '15px', 
             height: '15px', 
-            backgroundColor: '#00ff7f', 
+            backgroundColor: '#87CEEB', 
             borderRadius: '3px' 
           }}></div>
           <span style={{ color: '#fff', fontSize: '14px' }}>Tropical Countries</span>
@@ -197,7 +197,7 @@ export function SeasonalTrendLine() {
           <Tooltip 
             contentStyle={{
               backgroundColor: 'rgba(0,0,0,0.9)',
-              border: '1px solid #ff6600',
+              border: '1px solid #8B4513',
               borderRadius: '8px',
               color: '#fff'
             }}
@@ -209,21 +209,47 @@ export function SeasonalTrendLine() {
           <Line
             type="monotone"
             dataKey="seasonal"
-            stroke="#ff1493"
+            stroke="#800020"
             strokeWidth={4}
-            dot={{ fill: '#ff1493', r: 6 }}
-            activeDot={{ r: 8, fill: '#ff1493' }}
+            dot={{ fill: '#800020', r: 6 }}
+            activeDot={{ r: 8, fill: '#800020' }}
           />
           <Line
             type="monotone"
             dataKey="nonSeasonal"
-            stroke="#00ff7f"
+            stroke="#87CEEB"
             strokeWidth={4}
-            dot={{ fill: '#00ff7f', r: 6 }}
-            activeDot={{ r: 8, fill: '#00ff7f' }}
+            dot={{ fill: '#FFD700', r: 6 }}
+            activeDot={{ r: 8, fill: '#FFD700' }}
           />
         </LineChart>
       </ResponsiveContainer>
+      
+      <div style={{ 
+        display: 'flex', 
+        justifyContent: 'center',
+        gap: '30px',
+        marginTop: '20px'
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <div style={{ 
+            width: '15px', 
+            height: '15px', 
+            backgroundColor: '#800020', 
+            borderRadius: '3px' 
+          }}></div>
+          <span style={{ color: '#fff', fontSize: '14px' }}>Seasonal Countries</span>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <div style={{ 
+            width: '15px', 
+            height: '15px', 
+            backgroundColor: '#87CEEB', 
+            borderRadius: '3px' 
+          }}></div>
+          <span style={{ color: '#fff', fontSize: '14px' }}>Tropical Countries</span>
+        </div>
+      </div>
     </div>
   );
 }
@@ -297,16 +323,16 @@ export function AudioFeaturesRadar() {
           <Radar
             name="Seasonal"
             dataKey="seasonal"
-            stroke="#ff1493"
-            fill="#ff1493"
+            stroke="#800020"
+            fill="#800020"
             fillOpacity={0.2}
             strokeWidth={3}
           />
           <Radar
             name="Tropical"
             dataKey="nonSeasonal"
-            stroke="#00ff7f"
-            fill="#00ff7f"
+            stroke="#87CEEB"
+            fill="#87CEEB"
             fillOpacity={0.2}
             strokeWidth={3}
           />
@@ -323,7 +349,7 @@ export function AudioFeaturesRadar() {
           <div style={{ 
             width: '15px', 
             height: '15px', 
-            backgroundColor: '#ff1493', 
+            backgroundColor: '#800020', 
             borderRadius: '50%' 
           }}></div>
           <span style={{ color: '#fff', fontSize: '14px' }}>Seasonal Countries</span>
@@ -332,7 +358,7 @@ export function AudioFeaturesRadar() {
           <div style={{ 
             width: '15px', 
             height: '15px', 
-            backgroundColor: '#00ff7f', 
+            backgroundColor: '#87CEEB', 
             borderRadius: '50%' 
           }}></div>
           <span style={{ color: '#fff', fontSize: '14px' }}>Tropical Countries</span>
