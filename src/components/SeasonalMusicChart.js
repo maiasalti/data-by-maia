@@ -4,32 +4,32 @@ import React from "react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar } from 'recharts';
 
 const seasonalData = [
-  { season: 'Winter', valence: 0.489, energy: 0.677, danceability: 0.680, acousticness: 0.227, count: 865 },
-  { season: 'Spring', valence: 0.558, energy: 0.698, danceability: 0.662, acousticness: 0.199, count: 1607 },
-  { season: 'Summer', valence: 0.533, energy: 0.664, danceability: 0.641, acousticness: 0.246, count: 1622 },
-  { season: 'Fall', valence: 0.525, energy: 0.662, danceability: 0.643, acousticness: 0.258, count: 1502 }
+  { season: 'Winter', valence: 0.485, energy: 0.623, danceability: 0.634, acousticness: 0.247, count: 1232 },
+  { season: 'Spring', valence: 0.552, energy: 0.699, danceability: 0.657, acousticness: 0.164, count: 1358 },
+  { season: 'Summer', valence: 0.528, energy: 0.696, danceability: 0.637, acousticness: 0.145, count: 1448 },
+  { season: 'Fall', valence: 0.484, energy: 0.646, danceability: 0.660, acousticness: 0.200, count: 1267 }
 ];
 
 const nonSeasonalData = [
-  { season: 'Winter', valence: 0.521, energy: 0.659, danceability: 0.701, acousticness: 0.262, count: 727 },
-  { season: 'Spring', valence: 0.563, energy: 0.687, danceability: 0.675, acousticness: 0.228, count: 1363 },
-  { season: 'Summer', valence: 0.546, energy: 0.665, danceability: 0.661, acousticness: 0.265, count: 1375 },
-  { season: 'Fall', valence: 0.527, energy: 0.655, danceability: 0.652, acousticness: 0.281, count: 1134 }
+  { season: 'Winter', valence: 0.492, energy: 0.602, danceability: 0.635, acousticness: 0.333, count: 822 },
+  { season: 'Spring', valence: 0.524, energy: 0.627, danceability: 0.642, acousticness: 0.289, count: 792 },
+  { season: 'Summer', valence: 0.489, energy: 0.617, danceability: 0.628, acousticness: 0.273, count: 809 },
+  { season: 'Fall', valence: 0.473, energy: 0.593, danceability: 0.658, acousticness: 0.313, count: 806 }
 ];
 
 const monthlyTrends = [
-  { month: 'Jan', seasonal: 0.483, nonSeasonal: 0.525 },
-  { month: 'Feb', seasonal: 0.496, nonSeasonal: 0.520 },
-  { month: 'Mar', seasonal: 0.555, nonSeasonal: 0.549 },
-  { month: 'Apr', seasonal: 0.570, nonSeasonal: 0.578 },
-  { month: 'May', seasonal: 0.550, nonSeasonal: 0.563 },
-  { month: 'Jun', seasonal: 0.542, nonSeasonal: 0.556 },
-  { month: 'Jul', seasonal: 0.523, nonSeasonal: 0.542 },
-  { month: 'Aug', seasonal: 0.534, nonSeasonal: 0.535 },
-  { month: 'Sep', seasonal: 0.521, nonSeasonal: 0.534 },
-  { month: 'Oct', seasonal: 0.522, nonSeasonal: 0.527 },
-  { month: 'Nov', seasonal: 0.538, nonSeasonal: 0.509 },
-  { month: 'Dec', seasonal: 0, nonSeasonal: 0.433 }
+  { month: 'Jan', seasonal: 0.487, nonSeasonal: 0.482 },
+  { month: 'Feb', seasonal: 0.476, nonSeasonal: 0.488 },
+  { month: 'Mar', seasonal: 0.511, nonSeasonal: 0.500 },
+  { month: 'Apr', seasonal: 0.574, nonSeasonal: 0.540 },
+  { month: 'May', seasonal: 0.570, nonSeasonal: 0.535 },
+  { month: 'Jun', seasonal: 0.539, nonSeasonal: 0.517 },
+  { month: 'Jul', seasonal: 0.541, nonSeasonal: 0.500 },
+  { month: 'Aug', seasonal: 0.503, nonSeasonal: 0.456 },
+  { month: 'Sep', seasonal: 0.468, nonSeasonal: 0.444 },
+  { month: 'Oct', seasonal: 0.470, nonSeasonal: 0.462 },
+  { month: 'Nov', seasonal: 0.512, nonSeasonal: 0.509 },
+  { month: 'Dec', seasonal: 0.499, nonSeasonal: 0.509 }
 ];
 
 export function ValenceComparisonChart() {
@@ -145,8 +145,6 @@ export function ValenceComparisonChart() {
 }
 
 export function SeasonalTrendLine() {
-  const trendData = monthlyTrends.filter(item => item.seasonal > 0);
-
   return (
     <div style={{ 
       background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%)', 
@@ -170,11 +168,11 @@ export function SeasonalTrendLine() {
         marginBottom: '30px',
         fontSize: '16px'
       }}>
-        The January-February dip vs. spring peak in April
+        Spring peaks and fall/winter valleys show clear seasonal patterns
       </p>
       
       <ResponsiveContainer width="100%" height={350}>
-        <LineChart data={trendData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+        <LineChart data={monthlyTrends} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis 
             dataKey="month" 
@@ -188,7 +186,7 @@ export function SeasonalTrendLine() {
             fontSize={12}
             axisLine={{ stroke: '#fff' }}
             tickLine={{ stroke: '#fff' }}
-            domain={[0.45, 0.6]}
+            domain={[0.4, 0.6]}
             label={{ 
               value: 'Valence Score', 
               angle: -90, 
@@ -231,7 +229,6 @@ export function SeasonalTrendLine() {
 }
 
 export function AudioFeaturesRadar() {
-
   const seasonalAvg = {
     valence: seasonalData.reduce((sum, s) => sum + s.valence, 0) / 4,
     energy: seasonalData.reduce((sum, s) => sum + s.energy, 0) / 4,
@@ -276,7 +273,7 @@ export function AudioFeaturesRadar() {
         marginBottom: '30px',
         fontSize: '16px'
       }}>
-        Seasonal countries show higher acousticness, tropical countries have more danceability
+        Tropical countries favor more acoustic music, seasonal countries prefer higher energy
       </p>
       
       <ResponsiveContainer width="100%" height={400}>
@@ -341,6 +338,25 @@ export function AudioFeaturesRadar() {
           <span style={{ color: '#fff', fontSize: '14px' }}>Tropical Countries</span>
         </div>
       </div>
+    </div>
+  );
+}
+
+export default function SpotifySeasonalAnalysis() {
+  return (
+    <div style={{ backgroundColor: '#000', minHeight: '100vh', padding: '20px' }}>
+      <h1 style={{ 
+        color: '#fff', 
+        textAlign: 'center', 
+        fontSize: '36px', 
+        marginBottom: '40px',
+        fontWeight: 'bold'
+      }}>
+        Spotify Seasonal Music Analysis
+      </h1>
+      <ValenceComparisonChart />
+      <SeasonalTrendLine />
+      <AudioFeaturesRadar />
     </div>
   );
 }
