@@ -17,12 +17,12 @@ const sentimentData = [
 ];
 
 const connectorData = [
-  { connector: '"And"', ChatGPT: 34.83, Gemini: 45.45, Claude: 33.65 },
-  { connector: '"But"', ChatGPT: 13.45, Gemini: 10.61, Claude: 11.37 },
-  { connector: '"As"', ChatGPT: 9.31, Gemini: 3.03, Claude: 13.74 },
-  { connector: '"While"', ChatGPT: 3.10, Gemini: 2.02, Claude: 6.16 },
-  { connector: '"Like"', ChatGPT: 5.17, Gemini: 5.05, Claude: 4.27 },
-  { connector: '"So"', ChatGPT: 5.17, Gemini: 4.55, Claude: 2.37 }
+  { connector: '&quot;And&quot;', ChatGPT: 34.83, Gemini: 45.45, Claude: 33.65 },
+  { connector: '&quot;But&quot;', ChatGPT: 13.45, Gemini: 10.61, Claude: 11.37 },
+  { connector: '&quot;As&quot;', ChatGPT: 9.31, Gemini: 3.03, Claude: 13.74 },
+  { connector: '&quot;While&quot;', ChatGPT: 3.10, Gemini: 2.02, Claude: 6.16 },
+  { connector: '&quot;Like&quot;', ChatGPT: 5.17, Gemini: 5.05, Claude: 4.27 },
+  { connector: '&quot;So&quot;', ChatGPT: 5.17, Gemini: 4.55, Claude: 2.37 }
 ];
 
 const punctuationData = [
@@ -62,7 +62,7 @@ function useScrollTransition(elementRef, transitions) {
     handleScroll();
     
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [transitions]);
+  }, [transitions, elementRef]);
 
   return currentState;
 }
@@ -94,7 +94,7 @@ function useScrollTransition3State(elementRef) {
     handleScroll();
     
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [elementRef]);
 
   return currentState;
 }
@@ -249,7 +249,7 @@ const secondTextOpacity = scrollProgress > 0.7 ? 1 : 0;
         left: '50px',
         right: '50px'
         }}>
-        <p><strong>However, ChatGPT emerges as the lengthiest writer</strong>, averaging 15.9 words per sentence. That's nearly 3 words longer than Gemini's more concise 12.6 words. Claude sits in the middle at 14.6 words per sentence.</p>
+        <p><strong>However, ChatGPT emerges as the lengthiest writer</strong>, averaging 15.9 words per sentence. That&apos;s nearly 3 words longer than Gemini&apos;s more concise 12.6 words. Claude sits in the middle at 14.6 words per sentence.</p>
         </div>
       </div>
     </div>
@@ -563,13 +563,13 @@ export function ScrollingConnectorChart() {
         minHeight: '80px'
         }}>
         {currentState === 0 && (
-            <p><strong>Gemini loves "and"</strong>, using it in 45.5% of connecting situations, making it the most straightforward and additive in building arguments. It also frequently uses "then" (4.55%) and "now" (3.54%).</p>
+            <p><strong>Gemini loves &quot;and&quot;</strong>, using it in 45.5% of connecting situations, making it the most straightforward and additive in building arguments. It also frequently uses &quot;then&quot; (4.55%) and &quot;now&quot; (3.54%).</p>
         )}
         {currentState === 1 && (
-            <p><strong>Claude shows the most sophisticated transitions</strong>, using "as" (13.74%) and "while" (6.16%) much more than the others, creating more nuanced relationships between ideas. It rarely relies on simple "and" connections (33.65%).</p>
+            <p><strong>Claude shows the most sophisticated transitions</strong>, using &quot;as&quot; (13.74%) and &quot;while&quot; (6.16%) much more than the others, creating more nuanced relationships between ideas. It rarely relies on simple &quot;and&quot; connections (33.65%).</p>
         )}
         {currentState === 2 && (
-            <p>Finally, relatively even distribution on connectors "like" and "so".</p>
+            <p>Finally, relatively even distribution on connectors &quot;like&quot; and &quot;so&quot;.</p>
         )}
         </div>
       </div>
@@ -680,7 +680,7 @@ export function ScrollingPunctuationChart() {
             <p><strong>ChatGPT overuses commas</strong>  at 52.22%, significantly higher than Gemini (42.71%) or Claude (39.61%). The frequent comma occurrence might be due to the longer sentences on average that the OpenAI model uses, as it tries to pack more into each sentence.</p>
           )}
           {currentState === 1 && (
-            <p>Punctuation reveals the most subtle personality differences.<strong>**Claude is the em-dash expert**</strong>,(I honestly thought ChatGPT would own that title), using them 7.06% of the time compared to ChatGPT's 3.96% and Gemini's mere 0.51%.</p>
+            <p>Punctuation reveals the most subtle personality differences.<strong>Claude is the em-dash expert</strong>,(I honestly thought ChatGPT would own that title), using them 7.06% of the time compared to ChatGPT&apos;s 3.96% and Gemini&apos;s mere 0.51%.</p>
           )}
           {currentState === 2 && (
             <p><strong>Gemini asks the most questions</strong> (5.49% question marks) and uses the most periods (45.45%), emphasising its direct, clear communication style. Meanwhile, Claude uses ellipses 2.35% of the time, more than double the others, adding a more dramatic pause or cliffhanger to its writing.</p>
