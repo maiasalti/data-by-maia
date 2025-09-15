@@ -44,10 +44,10 @@ function streamLargeCSV(filePath, maxRows = 100000) {
 }
 
 async function analyzeSpotifyData() {
-  console.log('Starting Spotify seasonal analysis...');
+  console.log('Starting analysis');
   
   try {
-    console.log('Loading chart data (streaming)...');
+    console.log('Loading chart data');
     const chartData = await streamLargeCSV(
       path.join(__dirname, '../data/spotify-seasonal/charts.csv'), 
       100000
@@ -102,7 +102,7 @@ async function analyzeSpotifyData() {
     console.log(`Match rate: ${(joinedData.length / cleanedChartData.length * 100).toFixed(1)}%`);
 
     if (joinedData.length === 0) {
-      console.log('No matching data found. Check track_id alignment.');
+      console.log('No matching data found');
       return;
     }
 
@@ -112,10 +112,10 @@ async function analyzeSpotifyData() {
     const seasonalData = joinedData.filter(row => seasonalCountries.includes(row.country));
     const nonSeasonalData = joinedData.filter(row => nonSeasonalCountries.includes(row.country));
 
-    console.log(`Seasonal countries data: ${seasonalData.length} rows`);
-    console.log(`Non-seasonal countries data: ${nonSeasonalData.length} rows`);
+    console.log(`Seasonal countries: ${seasonalData.length} rows`);
+    console.log(`Non-seasonal countries: ${nonSeasonalData.length} rows`);
 
-    console.log('Calculating seasonal averages...');
+    console.log('seasonal averages calc');
     const seasonalAnalysis = calculateSeasonalAverages(seasonalData);
     const nonSeasonalAnalysis = calculateSeasonalAverages(nonSeasonalData);
     
@@ -151,7 +151,7 @@ async function analyzeSpotifyData() {
     
     return results;
   } catch (error) {
-    console.error('Error during analysis:', error);
+    console.error('Error in analysis:', error);
     throw error;
   }
 }

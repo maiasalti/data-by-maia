@@ -17,12 +17,12 @@ const sentimentData = [
 ];
 
 const connectorData = [
-  { connector: '&quot;And&quot;', ChatGPT: 34.83, Gemini: 45.45, Claude: 33.65 },
-  { connector: '&quot;But&quot;', ChatGPT: 13.45, Gemini: 10.61, Claude: 11.37 },
-  { connector: '&quot;As&quot;', ChatGPT: 9.31, Gemini: 3.03, Claude: 13.74 },
-  { connector: '&quot;While&quot;', ChatGPT: 3.10, Gemini: 2.02, Claude: 6.16 },
-  { connector: '&quot;Like&quot;', ChatGPT: 5.17, Gemini: 5.05, Claude: 4.27 },
-  { connector: '&quot;So&quot;', ChatGPT: 5.17, Gemini: 4.55, Claude: 2.37 }
+  { connector: 'And', ChatGPT: 34.83, Gemini: 45.45, Claude: 33.65 },
+  { connector: 'But', ChatGPT: 13.45, Gemini: 10.61, Claude: 11.37 },
+  { connector: 'As', ChatGPT: 9.31, Gemini: 3.03, Claude: 13.74 },
+  { connector: 'While', ChatGPT: 3.10, Gemini: 2.02, Claude: 6.16 },
+  { connector: 'Like', ChatGPT: 5.17, Gemini: 5.05, Claude: 4.27 },
+  { connector: 'So', ChatGPT: 5.17, Gemini: 4.55, Claude: 2.37 }
 ];
 
 const punctuationData = [
