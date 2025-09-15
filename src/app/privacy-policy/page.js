@@ -5,8 +5,8 @@ export default function PrivacyPolicy() {
       
       <div className="prose prose-lg max-w-none space-y-6">
         <div>
-          <p><strong>Effective Date:</strong> January 15, 2025</p>
-          <p><strong>Last Updated:</strong> January 15, 2025</p>
+          <p><strong>Effective Date:</strong> September 14, 2025</p>
+          <p><strong>Last Updated:</strong> September 14, 2025</p>
         </div>
 
         <section>
