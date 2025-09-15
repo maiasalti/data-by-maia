@@ -27,7 +27,7 @@ export default function HomePage() {
       </div>
       
       <p className={`${lato.className} text-lg mb-10 text-center`}>
-        Welcome to my data blog! Enjoy some fun and iteractive data stories, analyses, and visuals. Thanks for stopping by!
+        Welcome to my blog! Enjoy some fun and iteractive data stories, analyses, and visuals. Thanks for stopping by!
       </p>
       
       <h2 className="text-2xl font-semibold mb-6">Latest Posts</h2>
