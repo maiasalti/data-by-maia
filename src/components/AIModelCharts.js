@@ -626,13 +626,13 @@ export function ScrollingConnectorChart() {
         minHeight: '80px'
         }}>
         {currentState === 0 && (
-            <p><strong>Gemini loves "and"</strong>, using it in 45.5% of connecting situations, making it the most straightforward and additive in building arguments. It also frequently uses "then" (4.55%) and "now" (3.54%).</p>
+            <p><strong>Gemini loves &quot;and&quot;</strong>, using it in 45.5% of connecting situations, making it the most straightforward and additive in building arguments. It also frequently uses &quot;then&quot; (4.55%) and &quot;now&quot; (3.54%).</p>
         )}
         {currentState === 1 && (
-            <p><strong>Claude shows the most sophisticated transitions</strong>, using "as" (13.74%) and "while" (6.16%) much more than the others, creating more nuanced relationships between ideas. It rarely relies on simple "and" connections (33.65%).</p>
+            <p><strong>Claude shows the most sophisticated transitions</strong>, using &quot;as&quot; (13.74%) and &quot;while&quot; (6.16%) much more than the others, creating more nuanced relationships between ideas. It rarely relies on simple &quot;and&quot; connections (33.65%).</p>
         )}
         {currentState === 2 && (
-            <p>Finally, relatively even distribution on connectors "like" and "so".</p>
+            <p>Finally, relatively even distribution on connectors &quot;like&quot; and &quot;so&quot;.</p>
         )}
         </div>
       </div>
@@ -735,7 +735,7 @@ export function ScrollingPunctuationChart() {
             <p><strong>GPT overuses commas</strong>  at 52.22%, significantly higher than Gemini (42.71%) or Claude (39.61%). The frequent comma occurrence might be due to the longer sentences on average that the OpenAI model uses, as it tries to pack more into each sentence.</p>
           )}
           {currentState === 1 && (
-            <p>Punctuation reveals the most subtle personality differences.<strong>Claude is the em-dash expert</strong>,(I honestly thought GPT would own that title), using them 7.06% of the time compared to GPT's 3.96% and Gemini's mere 0.51%.</p>
+            <p>Punctuation reveals the most subtle personality differences.<strong>Claude is the em-dash expert</strong>,(I honestly thought GPT would own that title), using them 7.06% of the time compared to GPT&apos;s 3.96% and Gemini&apos;s mere 0.51%.</p>
           )}
           {currentState === 2 && (
             <p><strong>Gemini asks the most questions</strong> (5.49% question marks) and uses the most periods (45.45%), emphasising its direct, clear communication style. Meanwhile, Claude uses ellipses 2.35% of the time, more than double the others, adding a more dramatic pause or cliffhanger to its writing.</p>
