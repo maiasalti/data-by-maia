@@ -183,30 +183,6 @@ export function ScrollingSentenceChart() {
   const containerRef = useRef(null);
   const currentState = useScrollTransition(containerRef, 2);
 
-  const [scrollProgress, setScrollProgress] = useState(0);
-
-useEffect(() => {
-  const handleScroll = () => {
-    if (!containerRef.current) return;
-    
-    const rect = containerRef.current.getBoundingClientRect();
-    const windowHeight = window.innerHeight;
-    
-    const progress = Math.max(0, Math.min(1, 
-      (windowHeight - rect.top) / (windowHeight + rect.height)
-    ));
-    setScrollProgress(progress);
-  };
-
-  window.addEventListener('scroll', handleScroll);
-  handleScroll();
-  
-  return () => window.removeEventListener('scroll', handleScroll);
-}, []);
-
-const firstTextOpacity = scrollProgress < 0.6 ? 1 : 0;
-const secondTextOpacity = scrollProgress > 0.7 ? 1 : 0;
-
   const chartData = sentenceLengthData.map(item => ({
     model: item.model,
     value: currentState === 0 ? item.sentenceCount : item.avgLength,
@@ -303,37 +279,29 @@ const secondTextOpacity = scrollProgress > 0.7 ? 1 : 0;
 </Bar>
           </BarChart>
         </ResponsiveContainer>
-      </div>
-       {/* Scrolling text content */}
-      <div style={{ 
-        marginTop: '450px',
-        padding: '0 50px',
-        color: '#ccc',
-        fontSize: '16px',
-        lineHeight: '1.6',
-        position: 'relative'
-        }}>
-        <div style={{ 
-        marginBottom: '400px',
-        opacity: firstTextOpacity,
-        transition: 'opacity 0.3s ease'
-        }}>
-        <p>Gemini wins the sentence count race with a whopping 47-sentence lead above ChatGPT and 73 above Claude.</p>
-        </div>
 
+        {/* Dynamic text below chart */}
         <div style={{
-        opacity: secondTextOpacity,
-        transition: 'opacity 0.1s ease',
-        position: 'absolute',
-        top: '500px',
-        left: '50px',
-        right: '50px'
+          marginTop: '30px',
+          padding: '0 20px',
+          color: '#ccc',
+          fontSize: '16px',
+          lineHeight: '1.6',
+          textAlign: 'center',
+          minHeight: '120px'
         }}>
-        <p><strong>However, ChatGPT emerges as the lengthiest writer</strong>, averaging 15.9 words per sentence. That&apos;s nearly 3 words longer than Gemini&apos;s more concise 12.6 words. Claude sits in the middle at 14.6 words per sentence.</p>
+          {currentState === 0 && (
+            <p><strong>Gemini wins the sentence count race</strong> with a whopping 47-sentence lead above ChatGPT and 73 above Claude.</p>
+          )}
+          {currentState === 1 && (
+            <div>
+              <p><strong>However, ChatGPT emerges as the lengthiest writer</strong>, averaging 15.9 words per sentence. That&apos;s nearly 3 words longer than Gemini&apos;s more concise 12.6 words. Claude sits in the middle at 14.6 words per sentence.</p>
+              <p style={{ marginTop: '15px' }}>This suggests <strong>ChatGPT prefers complexity within sentences</strong>, while <strong>Gemini prefers complexity through sentence variety</strong>. Claude seems to take a balanced approach.</p>
+            </div>
+          )}
         </div>
       </div>
     </div>
-    
   );
 }
 
