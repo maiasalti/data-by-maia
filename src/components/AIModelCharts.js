@@ -11,9 +11,9 @@ const sentenceLengthData = [
 ];
 
 const sentimentData = [
-  { model: 'ChatGPT', positive: 62.5, negative: 37.5, positiveWords: 40, negativeWords: 24 },
+  { model: 'GPT', positive: 62.5, negative: 37.5, positiveWords: 40, negativeWords: 24 },
   { model: 'Claude', positive: 72.73, negative: 27.27, positiveWords: 40, negativeWords: 15 },
-  { model: 'Gemini', positive: 53.13, negative: 46.88, positiveWords: 34, negativeWords: 30 }
+  { model: 'Gemini', positive: 53.12, negative: 46.88, positiveWords: 34, negativeWords: 30 }
 ];
 
 const connectorData = [
