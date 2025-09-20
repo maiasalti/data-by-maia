@@ -39,6 +39,86 @@ const COLORS = {
   Claude: '#f59e0b'
 };
 
+// Custom Tooltip Component with colored indicators and ordered labels
+const CustomTooltip = ({ active, payload, label }) => {
+  if (active && payload && payload.length) {
+    // Sort payload to ensure consistent order: ChatGPT, Gemini, Claude
+    const sortedPayload = payload.sort((a, b) => {
+      const order = { ChatGPT: 0, Gemini: 1, Claude: 2 };
+      return order[a.dataKey] - order[b.dataKey];
+    });
+
+    return (
+      <div style={{
+        backgroundColor: 'rgba(0,0,0,0.9)',
+        border: '1px solid #10b981',
+        borderRadius: '8px',
+        padding: '12px',
+        color: '#fff'
+      }}>
+        <p style={{ margin: '0 0 8px 0', fontWeight: 'bold' }}>{label}</p>
+        {sortedPayload.map((entry, index) => (
+          <div key={index} style={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            margin: '4px 0',
+            fontSize: '14px'
+          }}>
+            <div style={{
+              width: '12px',
+              height: '12px',
+              backgroundColor: COLORS[entry.dataKey],
+              borderRadius: '2px',
+              marginRight: '8px'
+            }}></div>
+            <span style={{ color: '#fff' }}>
+              {entry.dataKey}: {entry.value}%
+            </span>
+          </div>
+        ))}
+      </div>
+    );
+  }
+  return null;
+};
+
+// Custom Tooltip for Stacked Bar Chart
+const StackedTooltip = ({ active, payload, label }) => {
+  if (active && payload && payload.length) {
+    return (
+      <div style={{
+        backgroundColor: 'rgba(0,0,0,0.9)',
+        border: '1px solid #10b981',
+        borderRadius: '8px',
+        padding: '12px',
+        color: '#fff'
+      }}>
+        <p style={{ margin: '0 0 8px 0', fontWeight: 'bold' }}>{label}</p>
+        {payload.map((entry, index) => (
+          <div key={index} style={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            margin: '4px 0',
+            fontSize: '14px'
+          }}>
+            <div style={{
+              width: '12px',
+              height: '12px',
+              backgroundColor: entry.color,
+              borderRadius: '2px',
+              marginRight: '8px'
+            }}></div>
+            <span style={{ color: '#fff' }}>
+              {entry.dataKey === 'positive' ? 'Positive' : 'Negative'}: {entry.value}%
+            </span>
+          </div>
+        ))}
+      </div>
+    );
+  }
+  return null;
+};
+
 // Hook for scroll-based transitions
 function useScrollTransition(elementRef, transitions) {
   const [currentState, setCurrentState] = useState(0);
@@ -285,10 +365,10 @@ export function ScrollingSentimentChart() {
 const firstTextOpacity = scrollProgress < 0.6 ? 1 : 0;
 const secondTextOpacity = scrollProgress > 0.7 ? 1 : 0;
 
-  const isBarChart = currentState === 0;
+  const isStackedChart = currentState === 0;
 
   // Prepare data for both chart types
-  const barData = sentimentData;
+  const stackedData = sentimentData;
   
   // Create individual pie data for each model
   const createModelPieData = (modelName) => {
@@ -320,7 +400,7 @@ const secondTextOpacity = scrollProgress > 0.7 ? 1 : 0;
           fontSize: '24px',
           fontWeight: '600'
         }}>
-          {isBarChart ? 'Sentiment by Model' : 'Individual Model Sentiment Breakdown'}
+          {isStackedChart ? 'Sentiment by Model' : 'Individual Model Sentiment Breakdown'}
         </h3>
         <p style={{ 
           color: '#ccc', 
@@ -329,12 +409,12 @@ const secondTextOpacity = scrollProgress > 0.7 ? 1 : 0;
           marginTop: '30px',
           fontSize: '16px'
         }}>
-          {isBarChart ? 'Claude is the most optimistic AI' : 'Positive vs negative language for each model'}
+          {isStackedChart ? 'Claude is the most optimistic AI' : 'Positive vs negative language for each model'}
         </p>
         
-        {isBarChart ? (
+        {isStackedChart ? (
           <ResponsiveContainer width="100%" height={350}>
-            <BarChart data={barData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+            <BarChart data={stackedData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
               <XAxis 
                 dataKey="model" 
@@ -348,28 +428,27 @@ const secondTextOpacity = scrollProgress > 0.7 ? 1 : 0;
                 fontSize={12}
                 axisLine={{ stroke: '#fff' }}
                 tickLine={{ stroke: '#fff' }}
-                domain={[0, 80]}
+                domain={[0, 100]}
               />
-            <Tooltip 
-            contentStyle={{
-                backgroundColor: 'rgba(0,0,0,0.9)',
-                border: '1px solid #10b981',
-                borderRadius: '8px',
-                color: '#fff',
-                '--recharts-tooltip-item-color': '#fff',
-                '--recharts-tooltip-label-color': '#fff'
-            }}
-            wrapperStyle={{
-                color: '#fff'
-            }}
-            formatter={(value) => [`${value}%`]}
-            />
-            <Bar dataKey="positive" fill="#10b981" radius={[4, 4, 0, 0]}>
-            <LabelList dataKey="positive" position="top" fill="#fff" fontSize={14} formatter={(value) => `${value}%`} />
-            </Bar>
-            <Bar dataKey="negative" fill="#ef4444" radius={[4, 4, 0, 0]}>
-            <LabelList dataKey="negative" position="top" fill="#fff" fontSize={14} formatter={(value) => `${value}%`} />
-            </Bar>
+              <Tooltip content={<StackedTooltip />} />
+              <Bar dataKey="positive" stackId="sentiment" fill="#10b981" radius={[0, 0, 0, 0]}>
+                <LabelList 
+                  dataKey="positive" 
+                  position="center" 
+                  fill="#fff" 
+                  fontSize={14} 
+                  formatter={(value) => `${value}%`} 
+                />
+              </Bar>
+              <Bar dataKey="negative" stackId="sentiment" fill="#ef4444" radius={[4, 4, 0, 0]}>
+                <LabelList 
+                  dataKey="negative" 
+                  position="center" 
+                  fill="#fff" 
+                  fontSize={14} 
+                  formatter={(value) => `${value}%`} 
+                />
+              </Bar>
             </BarChart>
           </ResponsiveContainer>
         ) : (
@@ -538,15 +617,7 @@ export function ScrollingConnectorChart() {
               axisLine={{ stroke: '#fff' }}
               tickLine={{ stroke: '#fff' }}
             />
-            <Tooltip 
-              contentStyle={{
-                backgroundColor: 'rgba(0,0,0,0.9)',
-                border: '1px solid #10b981',
-                borderRadius: '8px',
-                color: '#fff'
-              }}
-              formatter={(value, name) => [`${value}%`, name]}
-            />
+            <Tooltip content={<CustomTooltip />} />
             <Bar dataKey="ChatGPT" fill={COLORS.ChatGPT} radius={[2, 2, 0, 0]} />
             <Bar dataKey="Gemini" fill={COLORS.Gemini} radius={[2, 2, 0, 0]} />
             <Bar dataKey="Claude" fill={COLORS.Claude} radius={[2, 2, 0, 0]} />
@@ -651,15 +722,7 @@ export function ScrollingPunctuationChart() {
               axisLine={{ stroke: '#fff' }}
               tickLine={{ stroke: '#fff' }}
             />
-            <Tooltip 
-              contentStyle={{
-                backgroundColor: 'rgba(0,0,0,0.9)',
-                border: '1px solid #10b981',
-                borderRadius: '8px',
-                color: '#fff'
-              }}
-              formatter={(value, name) => [`${value}%`, name]}
-            />
+            <Tooltip content={<CustomTooltip />} />
             <Bar dataKey="ChatGPT" fill={COLORS.ChatGPT} radius={[2, 2, 0, 0]} />
             <Bar dataKey="Gemini" fill={COLORS.Gemini} radius={[2, 2, 0, 0]} />
             <Bar dataKey="Claude" fill={COLORS.Claude} radius={[2, 2, 0, 0]} />
