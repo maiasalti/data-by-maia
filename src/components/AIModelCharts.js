@@ -136,8 +136,8 @@ function useScrollTransition(elementRef, transitions, isMobile = false) {
       // Adjust thresholds for mobile to prevent jumping to cut-off views
       let stateIndex;
       if (isMobile) {
-        // More conservative thresholds for mobile
-        if (scrollProgress < 0.3) stateIndex = 0;
+        // More balanced thresholds for mobile
+        if (scrollProgress < 0.6) stateIndex = 0;
         else stateIndex = 1;
       } else {
         // Original logic for desktop
