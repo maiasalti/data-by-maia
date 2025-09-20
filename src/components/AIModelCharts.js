@@ -119,7 +119,7 @@ const StackedTooltip = ({ active, payload, label }) => {
 };
 
 
-function useScrollTransition(elementRef, transitions) {
+function useScrollTransition(elementRef, transitions, isMobile = false) {
   const [currentState, setCurrentState] = useState(0);
 
   useEffect(() => {
@@ -133,7 +133,17 @@ function useScrollTransition(elementRef, transitions) {
         (windowHeight - rect.top) / (windowHeight + rect.height)
       ));
       
-        const stateIndex = Math.floor((scrollProgress - 0.1) * transitions);
+      // Adjust thresholds for mobile to prevent jumping to cut-off views
+      let stateIndex;
+      if (isMobile) {
+        // More conservative thresholds for mobile
+        if (scrollProgress < 0.3) stateIndex = 0;
+        else stateIndex = 1;
+      } else {
+        // Original logic for desktop
+        stateIndex = Math.floor((scrollProgress - 0.1) * transitions);
+      }
+      
       setCurrentState(Math.min(stateIndex, transitions - 1));
     };
 
@@ -141,7 +151,7 @@ function useScrollTransition(elementRef, transitions) {
     handleScroll();
     
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [transitions, elementRef]);
+  }, [transitions, elementRef, isMobile]);
 
   return currentState;
 }
@@ -180,7 +190,16 @@ function useScrollTransition3State(elementRef) {
 
 export function ScrollingSentenceChart() {
   const containerRef = useRef(null);
-  const currentState = useScrollTransition(containerRef, 2);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  const currentState = useScrollTransition(containerRef, 2, isMobile);
 
   const chartData = sentenceLengthData.map(item => ({
     model: item.model,
@@ -304,7 +323,6 @@ export function ScrollingSentenceChart() {
 
 export function ScrollingSentimentChart() {
   const containerRef = useRef(null);
-  const currentState = useScrollTransition(containerRef, 2);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -314,6 +332,7 @@ export function ScrollingSentimentChart() {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
+  const currentState = useScrollTransition(containerRef, 2, isMobile);
   const isStackedChart = currentState === 0;
 
   const stackedData = sentimentData;
@@ -335,7 +354,7 @@ export function ScrollingSentimentChart() {
         borderRadius: '15px',
         margin: '30px 0',
         border: '1px solid #333',
-        minHeight: isMobile ? '180vh' : '120vh'
+        minHeight: isMobile ? '200vh' : '120vh'
       }}
     >
       <div style={{ position: 'sticky', top: '70px' }}>
@@ -404,10 +423,11 @@ export function ScrollingSentimentChart() {
             flexDirection: isMobile ? 'column' : 'row',
             justifyContent: isMobile ? 'flex-start' : 'space-around', 
             alignItems: 'center', 
-            height: isMobile ? '800px' : '400px', 
-            marginTop: isMobile ? '20px' : '-50px',
-            gap: isMobile ? '40px' : '0',
-            overflow: isMobile ? 'visible' : 'hidden'
+            height: isMobile ? '900px' : '400px', 
+            marginTop: isMobile ? '0px' : '-50px',
+            gap: isMobile ? '50px' : '0',
+            overflow: isMobile ? 'visible' : 'hidden',
+            paddingTop: isMobile ? '20px' : '0'
           }}>
             {['GPT', 'Claude', 'Gemini'].map((modelName) => (
               <div key={modelName} style={{ 
@@ -422,14 +442,14 @@ export function ScrollingSentimentChart() {
                 }}>{modelName}</h4>
                 <ResponsiveContainer 
                   width={isMobile ? '100%' : 200} 
-                  height={isMobile ? 220 : 200}
+                  height={isMobile ? 240 : 200}
                 >
                   <PieChart>
                     <Pie
                         data={createModelPieData(modelName)}
                         cx="50%"
                         cy="50%"
-                        outerRadius={isMobile ? 80 : 80}
+                        outerRadius={isMobile ? 90 : 80}
                         dataKey="value"
                         label={({ cx, cy, midAngle, innerRadius, outerRadius, value }) => {
                             const RADIAN = Math.PI / 180;
