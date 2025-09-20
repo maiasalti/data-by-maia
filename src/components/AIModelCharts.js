@@ -3,7 +3,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, LabelList } from 'recharts';
 
-// Data from your JSON files
 const sentenceLengthData = [
   { model: 'GPT', avgLength: 15.90, sentenceCount: 258 },
   { model: 'Gemini', avgLength: 12.58, sentenceCount: 305 },
@@ -39,10 +38,10 @@ const COLORS = {
   Claude: '#f59e0b'
 };
 
-// Custom Tooltip Component with colored indicators and ordered labels
+
 const CustomTooltip = ({ active, payload, label }) => {
   if (active && payload && payload.length) {
-    // Sort payload to ensure consistent order: GPT, Gemini, Claude
+   
     const sortedPayload = payload.sort((a, b) => {
       const order = { GPT: 0, Gemini: 1, Claude: 2 };
       return order[a.dataKey] - order[b.dataKey];
@@ -82,7 +81,7 @@ const CustomTooltip = ({ active, payload, label }) => {
   return null;
 };
 
-// Custom Tooltip for Stacked Bar Chart
+
 const StackedTooltip = ({ active, payload, label }) => {
   if (active && payload && payload.length) {
     return (
@@ -119,7 +118,7 @@ const StackedTooltip = ({ active, payload, label }) => {
   return null;
 };
 
-// Hook for scroll-based transitions
+
 function useScrollTransition(elementRef, transitions) {
   const [currentState, setCurrentState] = useState(0);
 
@@ -161,11 +160,11 @@ function useScrollTransition3State(elementRef) {
         (windowHeight - rect.top) / (windowHeight + rect.height)
       ));
       
-      // Later 0→1, much earlier 1→2
+     
       let stateIndex;
       if (scrollProgress < 0.55) stateIndex = 0;      
-      else if (scrollProgress < 0.65) stateIndex = 1; // Much shorter window
-      else stateIndex = 2;                            // Much earlier final state
+      else if (scrollProgress < 0.65) stateIndex = 1;
+      else stateIndex = 2;                           
       
       setCurrentState(stateIndex);
     };
@@ -264,7 +263,6 @@ export function ScrollingSentenceChart() {
             <Bar 
   dataKey="value" 
   radius={[4, 4, 0, 0]}
-  style={{ transition: 'all 0.5s ease' }}
 >
   {chartData.map((entry, index) => (
     <Cell key={`cell-${index}`} fill={COLORS[entry.model]} />
@@ -280,7 +278,7 @@ export function ScrollingSentenceChart() {
           </BarChart>
         </ResponsiveContainer>
 
-        {/* Dynamic text below chart */}
+        {}
         <div style={{
           marginTop: '30px',
           padding: '0 20px',
@@ -308,7 +306,6 @@ export function ScrollingSentimentChart() {
   const containerRef = useRef(null);
   const currentState = useScrollTransition(containerRef, 2);
   const [isMobile, setIsMobile] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -317,34 +314,10 @@ export function ScrollingSentimentChart() {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!containerRef.current) return;
-      
-      const rect = containerRef.current.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-      
-      const progress = Math.max(0, Math.min(1, 
-        (windowHeight - rect.top) / (windowHeight + rect.height)
-      ));
-      setScrollProgress(progress);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    handleScroll();
-    
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-const firstTextOpacity = scrollProgress < 0.6 ? 1 : 0;
-const secondTextOpacity = scrollProgress > 0.7 ? 1 : 0;
-
   const isStackedChart = currentState === 0;
 
-  // Prepare data for both chart types
   const stackedData = sentimentData;
-  
-  // Create individual pie data for each model
+
   const createModelPieData = (modelName) => {
     const modelData = sentimentData.find(item => item.model === modelName);
     return [
@@ -481,7 +454,7 @@ const secondTextOpacity = scrollProgress > 0.7 ? 1 : 0;
                       {createModelPieData(modelName).map((entry, index) => (
                         <Cell 
                           key={`cell-${index}`} 
-                          fill={index === 0 ? '#10b981' : '#ef4444'} // Green for positive, red for negative
+                          fill={index === 0 ? '#10b981' : '#ef4444'}
                         />
                       ))}
                     </Pie>
@@ -500,37 +473,32 @@ const secondTextOpacity = scrollProgress > 0.7 ? 1 : 0;
             ))}
           </div>
         )}
-      </div>
-      {/* Scrolling text content */}
-      <div style={{ 
-        marginTop: isMobile ? '400px' : '600px',
-        padding: '0 20px',
-        color: '#ccc',
-        fontSize: '16px',
-        lineHeight: '1.6',
-        position: 'relative'
-      }}>
-        <div style={{ 
-          marginBottom: '400px',
-          opacity: firstTextOpacity,
-        }}>
-          <p>The emotional analysis reveals large personality differences:</p>
-          <p><strong>Claude is the most optimistic</strong>, with 72.7% of its emotional language skewing positive. </p>
-        </div>
         
         <div style={{
-          opacity: secondTextOpacity,
-          position: 'absolute',
-          top: '370px',
-          left: '20px',
-          right: '20px'
+          marginTop: '30px',
+          padding: '0 20px',
+          color: '#ccc',
+          fontSize: '16px',
+          lineHeight: '1.6',
+          textAlign: 'center',
+          minHeight: '120px'
         }}>
-          <p><strong>GPT sits in the middle</strong> at 62.5% positive, striking a balanced tone that feels neither overly cheerful nor pessimistic.</p>
-          <p><strong>Gemini is surprisingly the most neutral</strong>, with only 53.1% positive language, the closest to a 50/50 split. This suggests Gemini aims for objectivity, even at the cost of warmth.</p>
+          {isStackedChart && (
+            <div>
+              <p>The emotional analysis reveals large personality differences:</p>
+              <p><strong>Claude is the most optimistic</strong>, with 72.7% of its emotional language skewing positive.</p>
+            </div>
+          )}
+          {!isStackedChart && (
+            <div>
+              <p><strong>GPT sits in the middle</strong> at 62.5% positive, striking a balanced tone that feels neither overly cheerful nor pessimistic.</p>
+              
+              <p><strong>Gemini is surprisingly the most neutral</strong>, with only 53.1% positive language, the closest to a 50/50 split. This suggests Gemini aims for objectivity, even at the cost of warmth.</p>
+            </div>
+          )}
         </div>
       </div>
     </div>
-    
   );
 }
 
@@ -538,12 +506,12 @@ export function ScrollingConnectorChart() {
   const containerRef = useRef(null);
   const currentState = useScrollTransition3State(containerRef);
 
-  // Different views based on scroll
+ 
   const getDataForState = (state) => {
     switch(state) {
-      case 0: return connectorData.slice(0, 2); // Top 2 connectors
-      case 1: return connectorData.slice(0, 4); // Top 4 connectors
-      case 2: return connectorData; // All 6 connectors
+      case 0: return connectorData.slice(0, 2);
+      case 1: return connectorData.slice(0, 4);
+      case 2: return connectorData;
       default: return connectorData;
     }
   };
@@ -615,7 +583,7 @@ export function ScrollingConnectorChart() {
             <Bar dataKey="Claude" fill={COLORS.Claude} radius={[2, 2, 0, 0]} />
           </BarChart>
         </ResponsiveContainer>
-            {/* Dynamic text below chart */}
+            {}
         <div style={{
         marginTop: '30px',
         padding: '0 20px',
@@ -646,9 +614,9 @@ export function ScrollingPunctuationChart() {
 
   const getDataForState = (state) => {
     switch(state) {
-      case 0: return punctuationData.slice(0, 2); // Top 2 punctuation marks
-      case 1: return punctuationData.slice(0, 4); // Top 4 punctuation marks
-      case 2: return punctuationData; // All 5 punctuation marks
+      case 0: return punctuationData.slice(0, 2);
+      case 1: return punctuationData.slice(0, 4); 
+      case 2: return punctuationData; 
       default: return punctuationData;
     }
   };
@@ -721,7 +689,7 @@ export function ScrollingPunctuationChart() {
           </BarChart>
         </ResponsiveContainer>
         
-        {/* Dynamic text below chart */}
+        {}
         <div style={{
           marginTop: '30px',
           padding: '0 20px',
@@ -746,7 +714,6 @@ export function ScrollingPunctuationChart() {
   );
 }
 
-// Legacy exports for backward compatibility
 export const SentenceLengthComparison = ScrollingSentenceChart;
 export const SentimentAnalysis = ScrollingSentimentChart;
 export const ConnectorWordsAnalysis = ScrollingConnectorChart;
