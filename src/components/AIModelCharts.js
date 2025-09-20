@@ -134,7 +134,7 @@ function useScrollTransition(elementRef, transitions) {
         (windowHeight - rect.top) / (windowHeight + rect.height)
       ));
       
-        const stateIndex = Math.floor((scrollProgress - 0.1) * transitions);
+      const stateIndex = Math.floor((scrollProgress - 0.1) * transitions);
       setCurrentState(Math.min(stateIndex, transitions - 1));
     };
 
@@ -185,27 +185,27 @@ export function ScrollingSentenceChart() {
 
   const [scrollProgress, setScrollProgress] = useState(0);
 
-useEffect(() => {
-  const handleScroll = () => {
-    if (!containerRef.current) return;
-    
-    const rect = containerRef.current.getBoundingClientRect();
-    const windowHeight = window.innerHeight;
-    
-    const progress = Math.max(0, Math.min(1, 
-      (windowHeight - rect.top) / (windowHeight + rect.height)
-    ));
-    setScrollProgress(progress);
-  };
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!containerRef.current) return;
+      
+      const rect = containerRef.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      
+      const progress = Math.max(0, Math.min(1, 
+        (windowHeight - rect.top) / (windowHeight + rect.height)
+      ));
+      setScrollProgress(progress);
+    };
 
-  window.addEventListener('scroll', handleScroll);
-  handleScroll();
-  
-  return () => window.removeEventListener('scroll', handleScroll);
-}, []);
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+    
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-const firstTextOpacity = scrollProgress < 0.6 ? 1 : 0;
-const secondTextOpacity = scrollProgress > 0.7 ? 1 : 0;
+  const firstTextOpacity = scrollProgress < 0.6 ? 1 : 0;
+  const secondTextOpacity = scrollProgress > 0.7 ? 1 : 0;
 
   const chartData = sentenceLengthData.map(item => ({
     model: item.model,
@@ -225,11 +225,12 @@ const secondTextOpacity = scrollProgress > 0.7 ? 1 : 0;
       ref={containerRef}
       style={{ 
         background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%)', 
-        padding: '30px', 
+        padding: '20px', 
         borderRadius: '15px',
-        margin: '30px 0',
+        margin: '20px 0',
         border: '1px solid #333',
-        minHeight: '120vh'
+        minHeight: '80vh', // Reduced from 120vh
+        position: 'relative'
       }}
     >
       <div style={{ position: 'sticky', top: '50px' }}>
@@ -270,70 +271,74 @@ const secondTextOpacity = scrollProgress > 0.7 ? 1 : 0;
               tickLine={{ stroke: '#fff' }}
               domain={yAxisDomain}
             />
-           <Tooltip 
-  contentStyle={{
-    backgroundColor: 'rgba(0,0,0,0.9)',
-    border: `1px solid ${barColor}`,
-    borderRadius: '8px',
-    color: '#fff'
-  }}
-  labelStyle={{
-    color: '#fff'
-  }}
-  itemStyle={{
-    color: '#fff'
-  }}
-  formatter={(value) => [chartData.find(d => d.value === value)?.label || value, title]}
-/>
+            <Tooltip 
+              contentStyle={{
+                backgroundColor: 'rgba(0,0,0,0.9)',
+                border: `1px solid ${barColor}`,
+                borderRadius: '8px',
+                color: '#fff'
+              }}
+              labelStyle={{
+                color: '#fff'
+              }}
+              itemStyle={{
+                color: '#fff'
+              }}
+              formatter={(value) => [chartData.find(d => d.value === value)?.label || value, title]}
+            />
             <Bar 
-  dataKey="value" 
-  radius={[4, 4, 0, 0]}
-  style={{ transition: 'all 0.5s ease' }}
->
-  {chartData.map((entry, index) => (
-    <Cell key={`cell-${index}`} fill={COLORS[entry.model]} />
-  ))}
-  <LabelList 
-    dataKey="value" 
-    position="top" 
-    fill="#fff"
-    fontSize={14}
-    formatter={(value) => chartData.find(d => d.value === value)?.label || value}
-  />
-</Bar>
+              dataKey="value" 
+              radius={[4, 4, 0, 0]}
+              style={{ transition: 'all 0.5s ease' }}
+            >
+              {chartData.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={COLORS[entry.model]} />
+              ))}
+              <LabelList 
+                dataKey="value" 
+                position="top" 
+                fill="#fff"
+                fontSize={14}
+                formatter={(value) => chartData.find(d => d.value === value)?.label || value}
+              />
+            </Bar>
           </BarChart>
         </ResponsiveContainer>
       </div>
-       {/* Scrolling text content */}
+      
+      {/* Scrolling text content - Fixed positioning */}
       <div style={{ 
-        marginTop: '450px',
-        padding: '0 50px',
+        marginTop: '50px',
+        padding: '0 20px',
         color: '#ccc',
         fontSize: '16px',
         lineHeight: '1.6',
-        position: 'relative'
-        }}>
+        position: 'relative',
+        minHeight: '200px' // Fixed height instead of large margins
+      }}>
         <div style={{ 
-        marginBottom: '400px',
-        opacity: firstTextOpacity,
-        transition: 'opacity 0.3s ease'
+          opacity: firstTextOpacity,
+          transition: 'opacity 0.3s ease',
+          position: 'absolute',
+          top: '0',
+          left: '20px',
+          right: '20px'
         }}>
-        <p>Gemini wins the sentence count race with a whopping 47-sentence lead above ChatGPT and 73 above Claude.</p>
+          <p>Gemini wins the sentence count race with a whopping 47-sentence lead above ChatGPT and 73 above Claude.</p>
         </div>
 
         <div style={{
-        opacity: secondTextOpacity,
-        transition: 'opacity 0.1s ease',
-        position: 'absolute',
-        top: '500px',
-        left: '50px',
-        right: '50px'
+          opacity: secondTextOpacity,
+          transition: 'opacity 0.3s ease',
+          position: 'absolute',
+          top: '80px',
+          left: '20px',
+          right: '20px'
         }}>
-        <p><strong>However, ChatGPT emerges as the lengthiest writer</strong>, averaging 15.9 words per sentence. That&apos;s nearly 3 words longer than Gemini&apos;s more concise 12.6 words. Claude sits in the middle at 14.6 words per sentence.</p>
+          <p><strong>However, ChatGPT emerges as the lengthiest writer</strong>, averaging 15.9 words per sentence. That's nearly 3 words longer than Gemini's more concise 12.6 words. Claude sits in the middle at 14.6 words per sentence.</p>
         </div>
       </div>
     </div>
-    
   );
 }
 
@@ -362,8 +367,8 @@ export function ScrollingSentimentChart() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-const firstTextOpacity = scrollProgress < 0.6 ? 1 : 0;
-const secondTextOpacity = scrollProgress > 0.7 ? 1 : 0;
+  const firstTextOpacity = scrollProgress < 0.6 ? 1 : 0;
+  const secondTextOpacity = scrollProgress > 0.7 ? 1 : 0;
 
   const isStackedChart = currentState === 0;
 
@@ -384,19 +389,19 @@ const secondTextOpacity = scrollProgress > 0.7 ? 1 : 0;
       ref={containerRef}
       style={{ 
         background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%)', 
-        padding: '30px', 
+        padding: '20px', 
         borderRadius: '15px',
-        margin: '30px 0',
+        margin: '20px 0',
         border: '1px solid #333',
-        minHeight: '120vh'
+        minHeight: '80vh', // Reduced from 120vh
+        position: 'relative'
       }}
     >
-      <div style={{ position: 'sticky', top: '70px' }}>
+      <div style={{ position: 'sticky', top: '50px' }}>
         <h3 style={{ 
           color: '#fff', 
           textAlign: 'center',
           marginBottom: '15px',
-          marginTop: '50px',
           fontSize: '24px',
           fontWeight: '600'
         }}>
@@ -405,8 +410,7 @@ const secondTextOpacity = scrollProgress > 0.7 ? 1 : 0;
         <p style={{ 
           color: '#ccc', 
           textAlign: 'center',
-          marginBottom: '40px',
-          marginTop: '30px',
+          marginBottom: '30px',
           fontSize: '16px'
         }}>
           {isStackedChart ? 'Claude is the most optimistic AI' : 'Positive vs negative language for each model'}
@@ -452,40 +456,40 @@ const secondTextOpacity = scrollProgress > 0.7 ? 1 : 0;
             </BarChart>
           </ResponsiveContainer>
         ) : (
-          <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', height: '400px', marginTop: '-50px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', height: '400px' }}>
             {['ChatGPT', 'Claude', 'Gemini'].map((modelName) => (
               <div key={modelName} style={{ textAlign: 'center' }}>
                 <h4 style={{ color: '#fff', marginBottom: '10px', fontSize: '18px' }}>{modelName}</h4>
                 <ResponsiveContainer width={200} height={200}>
                   <PieChart>
                     <Pie
-                        data={createModelPieData(modelName)}
-                        cx="50%"
-                        cy="50%"
-                        outerRadius={80}
-                        dataKey="value"
-                        label={({ cx, cy, midAngle, innerRadius, outerRadius, value }) => {
-                            const RADIAN = Math.PI / 180;
-                            const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-                            const x = cx + radius * Math.cos(-midAngle * RADIAN);
-                            const y = cy + radius * Math.sin(-midAngle * RADIAN);
-                            
-                            return (
-                            <text 
-                                x={x} 
-                                y={y} 
-                                fill='#fff' 
-                                textAnchor="middle"
-                                dominantBaseline="central"
-                                fontSize="14"
-                                fontWeight="bold"
-                            >
-                                {`${value}%`}
-                            </text>
-                            );
-                        }}
-                        labelLine={false}
-                        >
+                      data={createModelPieData(modelName)}
+                      cx="50%"
+                      cy="50%"
+                      outerRadius={80}
+                      dataKey="value"
+                      label={({ cx, cy, midAngle, innerRadius, outerRadius, value }) => {
+                        const RADIAN = Math.PI / 180;
+                        const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+                        const x = cx + radius * Math.cos(-midAngle * RADIAN);
+                        const y = cy + radius * Math.sin(-midAngle * RADIAN);
+                        
+                        return (
+                          <text 
+                            x={x} 
+                            y={y} 
+                            fill='#fff' 
+                            textAnchor="middle"
+                            dominantBaseline="central"
+                            fontSize="14"
+                            fontWeight="bold"
+                          >
+                            {`${value}%`}
+                          </text>
+                        );
+                      }}
+                      labelLine={false}
+                    >
                       {createModelPieData(modelName).map((entry, index) => (
                         <Cell 
                           key={`cell-${index}`} 
@@ -509,36 +513,42 @@ const secondTextOpacity = scrollProgress > 0.7 ? 1 : 0;
           </div>
         )}
       </div>
-      {/* Scrolling text content */}
+      
+      {/* Scrolling text content - Fixed positioning */}
       <div style={{ 
-        marginTop: '600px',
-        padding: '0 50px',
+        marginTop: '50px',
+        padding: '0 20px',
         color: '#ccc',
         fontSize: '16px',
         lineHeight: '1.6',
-        position: 'relative'
+        position: 'relative',
+        minHeight: '200px' // Fixed height
       }}>
         <div style={{ 
-          marginBottom: '400px',
           opacity: firstTextOpacity,
+          transition: 'opacity 0.3s ease',
+          position: 'absolute',
+          top: '0',
+          left: '20px',
+          right: '20px'
         }}>
           <p>The emotional analysis reveals large personality differences:</p>
-          <p><strong>Claude is the most optimistic</strong>, with 72.7% of its emotional language skewing positive. </p>
+          <p><strong>Claude is the most optimistic</strong>, with 72.7% of its emotional language skewing positive.</p>
         </div>
         
         <div style={{
           opacity: secondTextOpacity,
+          transition: 'opacity 0.3s ease',
           position: 'absolute',
-          top: '370px',
-          left: '50px',
-          right: '50px'
+          top: '100px',
+          left: '20px',
+          right: '20px'
         }}>
           <p><strong>ChatGPT sits in the middle</strong> at 62.5% positive, striking a balanced tone that feels neither overly cheerful nor pessimistic.</p>
-          <p><strong>Gemini is surprisingly the most neutral</strong>, with only 53.1% positive language, the closest to a 50/50 split. This suggests Gemini aims for objectivity, even at the cost of warmth.</p>
+          <p><strong>Gemini is surprisingly the most neutral</strong>, with only 53.1% positive language, the closest to a 50/50 split.</p>
         </div>
       </div>
     </div>
-    
   );
 }
 
@@ -559,13 +569,13 @@ export function ScrollingConnectorChart() {
   const titles = [
     'Most Common Connectors',
     'Adding More Connectors', 
-    'Adding More Connectors'
+    'Complete Connector Analysis'
   ];
 
   const subtitles = [
     'The most frequently used connecting words',
-    '',
-    'The Full picture'
+    'Expanding the connector analysis',
+    'The full picture of how models connect ideas'
   ];
 
   return (
@@ -573,11 +583,12 @@ export function ScrollingConnectorChart() {
       ref={containerRef}
       style={{ 
         background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%)', 
-        padding: '30px', 
+        padding: '20px', 
         borderRadius: '15px',
-        margin: '30px 0',
+        margin: '20px 0',
         border: '1px solid #333',
-        minHeight: '150vh'
+        minHeight: '90vh', // Reduced from 150vh
+        position: 'relative'
       }}
     >
       <div style={{ position: 'sticky', top: '50px' }}>
@@ -623,25 +634,26 @@ export function ScrollingConnectorChart() {
             <Bar dataKey="Claude" fill={COLORS.Claude} radius={[2, 2, 0, 0]} />
           </BarChart>
         </ResponsiveContainer>
-            {/* Dynamic text below chart */}
+        
+        {/* Dynamic text below chart */}
         <div style={{
-        marginTop: '30px',
-        padding: '0 20px',
-        color: '#ccc',
-        fontSize: '16px',
-        lineHeight: '1.6',
-        textAlign: 'center',
-        minHeight: '80px'
+          marginTop: '30px',
+          padding: '0 20px',
+          color: '#ccc',
+          fontSize: '16px',
+          lineHeight: '1.6',
+          textAlign: 'center',
+          minHeight: '120px' // Fixed height
         }}>
-        {currentState === 0 && (
-            <p><strong>Gemini loves &quot;and&quot;</strong>, using it in 45.5% of connecting situations, making it the most straightforward and additive in building arguments. It also frequently uses &quot;then&quot; (4.55%) and &quot;now&quot; (3.54%).</p>
-        )}
-        {currentState === 1 && (
-            <p><strong>Claude shows the most sophisticated transitions</strong>, using &quot;as&quot; (13.74%) and &quot;while&quot; (6.16%) much more than the others, creating more nuanced relationships between ideas. It rarely relies on simple &quot;and&quot; connections (33.65%).</p>
-        )}
-        {currentState === 2 && (
-            <p>Finally, relatively even distribution on connectors &quot;like&quot; and &quot;so&quot;.</p>
-        )}
+          {currentState === 0 && (
+            <p><strong>Gemini loves "and"</strong>, using it in 45.5% of connecting situations, making it the most straightforward and additive in building arguments.</p>
+          )}
+          {currentState === 1 && (
+            <p><strong>Claude shows the most sophisticated transitions</strong>, using "as" (13.74%) and "while" (6.16%) much more than the others, creating more nuanced relationships between ideas.</p>
+          )}
+          {currentState === 2 && (
+            <p>The complete picture shows relatively even distribution on connectors "like" and "so" across all models.</p>
+          )}
         </div>
       </div>
     </div>
@@ -678,11 +690,12 @@ export function ScrollingPunctuationChart() {
       ref={containerRef}
       style={{ 
         background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%)', 
-        padding: '30px', 
+        padding: '20px', 
         borderRadius: '15px',
-        margin: '30px 0',
+        margin: '20px 0',
         border: '1px solid #333',
-        minHeight: '150vh'
+        minHeight: '90vh', // Reduced from 150vh
+        position: 'relative'
       }}
     >
       <div style={{ position: 'sticky', top: '50px' }}>
@@ -737,20 +750,20 @@ export function ScrollingPunctuationChart() {
           fontSize: '16px',
           lineHeight: '1.6',
           textAlign: 'center',
-          minHeight: '120px'
+          minHeight: '120px' // Fixed height
         }}>
           {currentState === 0 && (
-            <p><strong>ChatGPT overuses commas</strong>  at 52.22%, significantly higher than Gemini (42.71%) or Claude (39.61%). The frequent comma occurrence might be due to the longer sentences on average that the OpenAI model uses, as it tries to pack more into each sentence.</p>
+            <p><strong>ChatGPT overuses commas</strong> at 52.22%, significantly higher than Gemini (42.71%) or Claude (39.61%). This might be due to longer average sentences.</p>
           )}
           {currentState === 1 && (
-            <p>Punctuation reveals the most subtle personality differences.<strong>Claude is the em-dash expert</strong>,(I honestly thought ChatGPT would own that title), using them 7.06% of the time compared to ChatGPT&apos;s 3.96% and Gemini&apos;s mere 0.51%.</p>
+            <p><strong>Claude is the em-dash expert</strong>, using them 7.06% of the time compared to ChatGPT's 3.96% and Gemini's mere 0.51%.</p>
           )}
           {currentState === 2 && (
-            <p><strong>Gemini asks the most questions</strong> (5.49% question marks) and uses the most periods (45.45%), emphasising its direct, clear communication style. Meanwhile, Claude uses ellipses 2.35% of the time, more than double the others, adding a more dramatic pause or cliffhanger to its writing.</p>
+            <p><strong>Gemini asks the most questions</strong> (5.49% question marks) and uses the most periods (45.45%), emphasizing its direct, clear communication style. Claude uses ellipses 2.35% of the time, adding dramatic pauses.</p>
           )}
         </div>
       </div>
-      </div>
+    </div>
   );
 }
 
