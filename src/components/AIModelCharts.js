@@ -295,7 +295,7 @@ export function ScrollingSentenceChart() {
           )}
           {currentState === 1 && (
             <div>
-              <p><strong>However, GPT emerges as the lengthiest writer</strong>, averaging 15.9 words per sentence. That's nearly 3 words longer than Gemini's more concise 12.6 words. Claude sits in the middle at 14.6 words per sentence.</p>
+              <p><strong>However, GPT emerges as the lengthiest writer</strong>, averaging 15.9 words per sentence. That&apos;s nearly 3 words longer than Gemini&apos;s more concise 12.6 words. Claude sits in the middle at 14.6 words per sentence.</p>
             </div>
           )}
         </div>
