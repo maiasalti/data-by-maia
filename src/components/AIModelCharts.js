@@ -335,7 +335,7 @@ export function ScrollingSentimentChart() {
         borderRadius: '15px',
         margin: '30px 0',
         border: '1px solid #333',
-        minHeight: '120vh'
+        minHeight: isMobile ? '180vh' : '120vh'
       }}
     >
       <div style={{ position: 'sticky', top: '70px' }}>
@@ -402,32 +402,34 @@ export function ScrollingSentimentChart() {
           <div style={{ 
             display: 'flex', 
             flexDirection: isMobile ? 'column' : 'row',
-            justifyContent: 'space-around', 
+            justifyContent: isMobile ? 'flex-start' : 'space-around', 
             alignItems: 'center', 
-            height: isMobile ? 'auto' : '400px', 
-            marginTop: '-50px',
-            gap: isMobile ? '20px' : '0'
+            height: isMobile ? '800px' : '400px', 
+            marginTop: isMobile ? '20px' : '-50px',
+            gap: isMobile ? '40px' : '0',
+            overflow: isMobile ? 'visible' : 'hidden'
           }}>
             {['GPT', 'Claude', 'Gemini'].map((modelName) => (
               <div key={modelName} style={{ 
                 textAlign: 'center',
-                width: isMobile ? '100%' : 'auto'
+                width: isMobile ? '100%' : 'auto',
+                flex: isMobile ? 'none' : 'auto'
               }}>
                 <h4 style={{ 
                   color: '#fff', 
-                  marginBottom: '10px', 
+                  marginBottom: '15px', 
                   fontSize: '18px' 
                 }}>{modelName}</h4>
                 <ResponsiveContainer 
                   width={isMobile ? '100%' : 200} 
-                  height={isMobile ? 250 : 200}
+                  height={isMobile ? 220 : 200}
                 >
                   <PieChart>
                     <Pie
                         data={createModelPieData(modelName)}
                         cx="50%"
                         cy="50%"
-                        outerRadius={isMobile ? 100 : 80}
+                        outerRadius={isMobile ? 80 : 80}
                         dataKey="value"
                         label={({ cx, cy, midAngle, innerRadius, outerRadius, value }) => {
                             const RADIAN = Math.PI / 180;
