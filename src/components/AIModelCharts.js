@@ -5,36 +5,36 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContaine
 
 // Data from your JSON files
 const sentenceLengthData = [
-  { model: 'ChatGPT', avgLength: 15.90, sentenceCount: 258 },
+  { model: 'GPT', avgLength: 15.90, sentenceCount: 258 },
   { model: 'Gemini', avgLength: 12.58, sentenceCount: 305 },
   { model: 'Claude', avgLength: 14.59, sentenceCount: 232 }
 ];
 
 const sentimentData = [
-  { model: 'ChatGPT', positive: 62.5, negative: 37.5, positiveWords: 40, negativeWords: 24 },
+  { model: 'GPT', positive: 62.5, negative: 37.5, positiveWords: 40, negativeWords: 24 },
   { model: 'Claude', positive: 72.73, negative: 27.27, positiveWords: 40, negativeWords: 15 },
   { model: 'Gemini', positive: 53.13, negative: 46.88, positiveWords: 34, negativeWords: 30 }
 ];
 
 const connectorData = [
-  { connector: 'And', ChatGPT: 34.83, Gemini: 45.45, Claude: 33.65 },
-  { connector: 'But', ChatGPT: 13.45, Gemini: 10.61, Claude: 11.37 },
-  { connector: 'As', ChatGPT: 9.31, Gemini: 3.03, Claude: 13.74 },
-  { connector: 'While', ChatGPT: 3.10, Gemini: 2.02, Claude: 6.16 },
-  { connector: 'Like', ChatGPT: 5.17, Gemini: 5.05, Claude: 4.27 },
-  { connector: 'So', ChatGPT: 5.17, Gemini: 4.55, Claude: 2.37 }
+  { connector: 'And', GPT: 34.83, Gemini: 45.45, Claude: 33.65 },
+  { connector: 'But', GPT: 13.45, Gemini: 10.61, Claude: 11.37 },
+  { connector: 'As', GPT: 9.31, Gemini: 3.03, Claude: 13.74 },
+  { connector: 'While', GPT: 3.10, Gemini: 2.02, Claude: 6.16 },
+  { connector: 'Like', GPT: 5.17, Gemini: 5.05, Claude: 4.27 },
+  { connector: 'So', GPT: 5.17, Gemini: 4.55, Claude: 2.37 }
 ];
 
 const punctuationData = [
-  { punctuation: 'Comma', ChatGPT: 52.22, Gemini: 42.71, Claude: 39.61 },
-  { punctuation: 'Period', ChatGPT: 37.82, Gemini: 45.45, Claude: 39.8 },
-  { punctuation: 'Em dash', ChatGPT: 3.96, Gemini: 0.51, Claude: 7.06 },
-  { punctuation: 'Question', ChatGPT: 2.22, Gemini: 5.49, Claude: 5.29 },
-  { punctuation: 'Ellipsis', ChatGPT: 0.0, Gemini: 0.51, Claude: 2.35 }
+  { punctuation: 'Comma', GPT: 52.22, Gemini: 42.71, Claude: 39.61 },
+  { punctuation: 'Period', GPT: 37.82, Gemini: 45.45, Claude: 39.8 },
+  { punctuation: 'Em dash', GPT: 3.96, Gemini: 0.51, Claude: 7.06 },
+  { punctuation: 'Question', GPT: 2.22, Gemini: 5.49, Claude: 5.29 },
+  { punctuation: 'Ellipsis', GPT: 0.0, Gemini: 0.51, Claude: 2.35 }
 ];
 
 const COLORS = {
-  ChatGPT: '#10b981',
+  GPT: '#10b981',
   Gemini: '#3b82f6',  
   Claude: '#f59e0b'
 };
@@ -42,9 +42,9 @@ const COLORS = {
 // Custom Tooltip Component with colored indicators and ordered labels
 const CustomTooltip = ({ active, payload, label }) => {
   if (active && payload && payload.length) {
-    // Sort payload to ensure consistent order: ChatGPT, Gemini, Claude
+    // Sort payload to ensure consistent order: GPT, Gemini, Claude
     const sortedPayload = payload.sort((a, b) => {
-      const order = { ChatGPT: 0, Gemini: 1, Claude: 2 };
+      const order = { GPT: 0, Gemini: 1, Claude: 2 };
       return order[a.dataKey] - order[b.dataKey];
     });
 
@@ -194,7 +194,7 @@ export function ScrollingSentenceChart() {
   const title = currentState === 0 ? 'Total Sentences Written' : 'Average Sentence Length';
   const subtitle = currentState === 0 ? 
     'Gemini writes the most sentences overall' : 
-    'ChatGPT uses the longest sentences';
+    'GPT uses the longest sentences';
 
   return (
     <div 
@@ -291,11 +291,11 @@ export function ScrollingSentenceChart() {
           minHeight: '120px'
         }}>
           {currentState === 0 && (
-            <p><strong>Gemini wins the sentence count race</strong> with a whopping 47-sentence lead above ChatGPT and 73 above Claude.</p>
+            <p><strong>Gemini wins the sentence count race</strong> with a whopping 47-sentence lead above GPT and 73 above Claude.</p>
           )}
           {currentState === 1 && (
             <div>
-              <p><strong>However, ChatGPT emerges as the lengthiest writer</strong>, averaging 15.9 words per sentence. That&apos;s nearly 3 words longer than Gemini&apos;s more concise 12.6 words. Claude sits in the middle at 14.6 words per sentence.</p>
+              <p><strong>However, GPT emerges as the lengthiest writer</strong>, averaging 15.9 words per sentence. That's nearly 3 words longer than Gemini's more concise 12.6 words. Claude sits in the middle at 14.6 words per sentence.</p>
             </div>
           )}
         </div>
@@ -307,8 +307,15 @@ export function ScrollingSentenceChart() {
 export function ScrollingSentimentChart() {
   const containerRef = useRef(null);
   const currentState = useScrollTransition(containerRef, 2);
-
+  const [isMobile, setIsMobile] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -351,7 +358,7 @@ const secondTextOpacity = scrollProgress > 0.7 ? 1 : 0;
       ref={containerRef}
       style={{ 
         background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%)', 
-        padding: '30px', 
+        padding: '20px', 
         borderRadius: '15px',
         margin: '30px 0',
         border: '1px solid #333',
@@ -419,17 +426,35 @@ const secondTextOpacity = scrollProgress > 0.7 ? 1 : 0;
             </BarChart>
           </ResponsiveContainer>
         ) : (
-          <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', height: '400px', marginTop: '-50px' }}>
-            {['ChatGPT', 'Claude', 'Gemini'].map((modelName) => (
-              <div key={modelName} style={{ textAlign: 'center' }}>
-                <h4 style={{ color: '#fff', marginBottom: '10px', fontSize: '18px' }}>{modelName}</h4>
-                <ResponsiveContainer width={200} height={200}>
+          <div style={{ 
+            display: 'flex', 
+            flexDirection: isMobile ? 'column' : 'row',
+            justifyContent: 'space-around', 
+            alignItems: 'center', 
+            height: isMobile ? 'auto' : '400px', 
+            marginTop: '-50px',
+            gap: isMobile ? '20px' : '0'
+          }}>
+            {['GPT', 'Claude', 'Gemini'].map((modelName) => (
+              <div key={modelName} style={{ 
+                textAlign: 'center',
+                width: isMobile ? '100%' : 'auto'
+              }}>
+                <h4 style={{ 
+                  color: '#fff', 
+                  marginBottom: '10px', 
+                  fontSize: '18px' 
+                }}>{modelName}</h4>
+                <ResponsiveContainer 
+                  width={isMobile ? '100%' : 200} 
+                  height={isMobile ? 250 : 200}
+                >
                   <PieChart>
                     <Pie
                         data={createModelPieData(modelName)}
                         cx="50%"
                         cy="50%"
-                        outerRadius={80}
+                        outerRadius={isMobile ? 100 : 80}
                         dataKey="value"
                         label={({ cx, cy, midAngle, innerRadius, outerRadius, value }) => {
                             const RADIAN = Math.PI / 180;
@@ -478,8 +503,8 @@ const secondTextOpacity = scrollProgress > 0.7 ? 1 : 0;
       </div>
       {/* Scrolling text content */}
       <div style={{ 
-        marginTop: '600px',
-        padding: '0 50px',
+        marginTop: isMobile ? '400px' : '600px',
+        padding: '0 20px',
         color: '#ccc',
         fontSize: '16px',
         lineHeight: '1.6',
@@ -497,10 +522,10 @@ const secondTextOpacity = scrollProgress > 0.7 ? 1 : 0;
           opacity: secondTextOpacity,
           position: 'absolute',
           top: '370px',
-          left: '50px',
-          right: '50px'
+          left: '20px',
+          right: '20px'
         }}>
-          <p><strong>ChatGPT sits in the middle</strong> at 62.5% positive, striking a balanced tone that feels neither overly cheerful nor pessimistic.</p>
+          <p><strong>GPT sits in the middle</strong> at 62.5% positive, striking a balanced tone that feels neither overly cheerful nor pessimistic.</p>
           <p><strong>Gemini is surprisingly the most neutral</strong>, with only 53.1% positive language, the closest to a 50/50 split. This suggests Gemini aims for objectivity, even at the cost of warmth.</p>
         </div>
       </div>
@@ -585,7 +610,7 @@ export function ScrollingConnectorChart() {
               tickLine={{ stroke: '#fff' }}
             />
             <Tooltip content={<CustomTooltip />} />
-            <Bar dataKey="ChatGPT" fill={COLORS.ChatGPT} radius={[2, 2, 0, 0]} />
+            <Bar dataKey="GPT" fill={COLORS.GPT} radius={[2, 2, 0, 0]} />
             <Bar dataKey="Gemini" fill={COLORS.Gemini} radius={[2, 2, 0, 0]} />
             <Bar dataKey="Claude" fill={COLORS.Claude} radius={[2, 2, 0, 0]} />
           </BarChart>
@@ -601,13 +626,13 @@ export function ScrollingConnectorChart() {
         minHeight: '80px'
         }}>
         {currentState === 0 && (
-            <p><strong>Gemini loves &quot;and&quot;</strong>, using it in 45.5% of connecting situations, making it the most straightforward and additive in building arguments. It also frequently uses &quot;then&quot; (4.55%) and &quot;now&quot; (3.54%).</p>
+            <p><strong>Gemini loves "and"</strong>, using it in 45.5% of connecting situations, making it the most straightforward and additive in building arguments. It also frequently uses "then" (4.55%) and "now" (3.54%).</p>
         )}
         {currentState === 1 && (
-            <p><strong>Claude shows the most sophisticated transitions</strong>, using &quot;as&quot; (13.74%) and &quot;while&quot; (6.16%) much more than the others, creating more nuanced relationships between ideas. It rarely relies on simple &quot;and&quot; connections (33.65%).</p>
+            <p><strong>Claude shows the most sophisticated transitions</strong>, using "as" (13.74%) and "while" (6.16%) much more than the others, creating more nuanced relationships between ideas. It rarely relies on simple "and" connections (33.65%).</p>
         )}
         {currentState === 2 && (
-            <p>Finally, relatively even distribution on connectors &quot;like&quot; and &quot;so&quot;.</p>
+            <p>Finally, relatively even distribution on connectors "like" and "so".</p>
         )}
         </div>
       </div>
@@ -690,7 +715,7 @@ export function ScrollingPunctuationChart() {
               tickLine={{ stroke: '#fff' }}
             />
             <Tooltip content={<CustomTooltip />} />
-            <Bar dataKey="ChatGPT" fill={COLORS.ChatGPT} radius={[2, 2, 0, 0]} />
+            <Bar dataKey="GPT" fill={COLORS.GPT} radius={[2, 2, 0, 0]} />
             <Bar dataKey="Gemini" fill={COLORS.Gemini} radius={[2, 2, 0, 0]} />
             <Bar dataKey="Claude" fill={COLORS.Claude} radius={[2, 2, 0, 0]} />
           </BarChart>
@@ -707,10 +732,10 @@ export function ScrollingPunctuationChart() {
           minHeight: '120px'
         }}>
           {currentState === 0 && (
-            <p><strong>ChatGPT overuses commas</strong>  at 52.22%, significantly higher than Gemini (42.71%) or Claude (39.61%). The frequent comma occurrence might be due to the longer sentences on average that the OpenAI model uses, as it tries to pack more into each sentence.</p>
+            <p><strong>GPT overuses commas</strong>  at 52.22%, significantly higher than Gemini (42.71%) or Claude (39.61%). The frequent comma occurrence might be due to the longer sentences on average that the OpenAI model uses, as it tries to pack more into each sentence.</p>
           )}
           {currentState === 1 && (
-            <p>Punctuation reveals the most subtle personality differences.<strong>Claude is the em-dash expert</strong>,(I honestly thought ChatGPT would own that title), using them 7.06% of the time compared to ChatGPT&apos;s 3.96% and Gemini&apos;s mere 0.51%.</p>
+            <p>Punctuation reveals the most subtle personality differences.<strong>Claude is the em-dash expert</strong>,(I honestly thought GPT would own that title), using them 7.06% of the time compared to GPT's 3.96% and Gemini's mere 0.51%.</p>
           )}
           {currentState === 2 && (
             <p><strong>Gemini asks the most questions</strong> (5.49% question marks) and uses the most periods (45.45%), emphasising its direct, clear communication style. Meanwhile, Claude uses ellipses 2.35% of the time, more than double the others, adding a more dramatic pause or cliffhanger to its writing.</p>
