@@ -296,7 +296,6 @@ export function ScrollingSentenceChart() {
           {currentState === 1 && (
             <div>
               <p><strong>However, ChatGPT emerges as the lengthiest writer</strong>, averaging 15.9 words per sentence. That&apos;s nearly 3 words longer than Gemini&apos;s more concise 12.6 words. Claude sits in the middle at 14.6 words per sentence.</p>
-              <p style={{ marginTop: '15px' }}>This suggests <strong>ChatGPT prefers complexity within sentences</strong>, while <strong>Gemini prefers complexity through sentence variety</strong>. Claude seems to take a balanced approach.</p>
             </div>
           )}
         </div>
