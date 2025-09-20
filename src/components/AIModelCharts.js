@@ -119,7 +119,7 @@ const StackedTooltip = ({ active, payload, label }) => {
 };
 
 
-function useScrollTransition(elementRef, transitions, isMobile = false) {
+function useScrollTransition(elementRef, transitions, isMobile = false, chartType = 'default') {
   const [currentState, setCurrentState] = useState(0);
 
   useEffect(() => {
@@ -133,12 +133,24 @@ function useScrollTransition(elementRef, transitions, isMobile = false) {
         (windowHeight - rect.top) / (windowHeight + rect.height)
       ));
       
-      // Adjust thresholds for mobile to prevent jumping to cut-off views
+      // Adjust thresholds based on chart type and device
       let stateIndex;
       if (isMobile) {
-        // More balanced thresholds for mobile
-        if (scrollProgress < 0.6) stateIndex = 0;
-        else stateIndex = 1;
+        switch(chartType) {
+          case 'sentence':
+            // Balanced threshold for sentence chart
+            if (scrollProgress < 0.6) stateIndex = 0;
+            else stateIndex = 1;
+            break;
+          case 'sentiment':
+            // More conservative threshold for sentiment chart to prevent pie chart cut-off
+            if (scrollProgress < 0.45) stateIndex = 0;
+            else stateIndex = 1;
+            break;
+          default:
+            // Original logic
+            stateIndex = Math.floor((scrollProgress - 0.1) * transitions);
+        }
       } else {
         // Original logic for desktop
         stateIndex = Math.floor((scrollProgress - 0.1) * transitions);
@@ -151,7 +163,7 @@ function useScrollTransition(elementRef, transitions, isMobile = false) {
     handleScroll();
     
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [transitions, elementRef, isMobile]);
+  }, [transitions, elementRef, isMobile, chartType]);
 
   return currentState;
 }
@@ -199,7 +211,7 @@ export function ScrollingSentenceChart() {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  const currentState = useScrollTransition(containerRef, 2, isMobile);
+  const currentState = useScrollTransition(containerRef, 2, isMobile, 'sentence');
 
   const chartData = sentenceLengthData.map(item => ({
     model: item.model,
@@ -332,7 +344,7 @@ export function ScrollingSentimentChart() {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  const currentState = useScrollTransition(containerRef, 2, isMobile);
+  const currentState = useScrollTransition(containerRef, 2, isMobile, 'sentiment');
   const isStackedChart = currentState === 0;
 
   const stackedData = sentimentData;
