@@ -4,6 +4,7 @@ import matter from "gray-matter";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { ValenceComparisonChart, AudioFeaturesRadar, SeasonalTrendLine } from "../../../components/SeasonalMusicChart";
 import { SentenceLengthComparison, SentimentAnalysis, ConnectorWordsAnalysis, PunctuationAnalysis } from "../../../components/AIModelCharts";
+import { TouchdownRateChart, InterceptionRateChart, FumbleRateChart, EPAChart, TurnoverRateChart } from "../../../components/SuperBowl49Chart";
 
 const postsDirectory = path.join(process.cwd(), "src/posts");
 
@@ -63,6 +64,11 @@ export default async function PostPage({ params }) {
               SentimentAnalysis,
               ConnectorWordsAnalysis,
               PunctuationAnalysis,
+              TouchdownRateChart,
+              InterceptionRateChart,
+              FumbleRateChart,
+              EPAChart,
+              TurnoverRateChart
             }}
           />
         </div>
