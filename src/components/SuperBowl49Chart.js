@@ -168,7 +168,7 @@ export const FumbleRateChart = () => {
         </BarChart>
       </ResponsiveContainer>
       <p style={{ textAlign: 'center', color: '#ccc', marginTop: '20px', marginBottom: 0 }}>
-        Run plays have a slightly higher fumble rate (1.36% vs 0.54%), but this is still lower than passing's total turnover risk
+        Run plays have a slightly higher fumble rate (1.36% vs 0.54%), but this is still lower than passing&apos;s total turnover risk
       </p>
     </div>
   );

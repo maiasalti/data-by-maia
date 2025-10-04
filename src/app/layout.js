@@ -2,6 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Link from 'next/link';
 import Image from 'next/image';
 import "./globals.css";
+import Script from 'next/script'
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,8 +24,13 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
         {/* Google Analytics */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-ELZ1DCZPNK"></script>
-        <script
+        <Script
+          strategy="afterInteractive"
+          src="https://www.googletagmanager.com/gtag/js?id=G-ELZ1DCZPNK"
+        />
+        <Script
+          id="google-analytics"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
@@ -51,11 +57,9 @@ export default function RootLayout({ children }) {
             </Link>
           </div>
         </header>
-
         <main className="min-h-screen">
           {children}
         </main>
-
         <footer className="bg-gray-800 text-white py-4 text-center">
           <div className="max-w-6xl mx-auto px-4">
             <div className="space-x-4">
