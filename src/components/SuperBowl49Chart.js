@@ -9,8 +9,8 @@ const patriotsBlue = '#002244';
 
 // Data
 const playTypeData = [
-  { type: 'Pass', td_rate: 49.47, int_rate: 1.43, fumble_rate: 0.54, avg_epa: -0.055 },
-  { type: 'Run', td_rate: 55.69, int_rate: 0.00, fumble_rate: 1.36, avg_epa: 0.035 }
+  { type: 'Pass', td_rate: 49.47, int_rate: 1.43, fumble_rate: 0.54, avg_epa: -0.055, turnover_rate: 1.78 },
+  { type: 'Run', td_rate: 55.69, int_rate: 0.00, fumble_rate: 1.36, avg_epa: 0.035, turnover_rate: 1.36 }
 ];
 
 const CustomTooltip = ({ active, payload, label }) => {
@@ -235,7 +235,7 @@ export const EPAChart = () => {
 export const TurnoverRateChart = () => {
   const turnoverData = playTypeData.map(item => ({
     type: item.type,
-    rate: item.int_rate + item.fumble_rate
+    rate: item.turnover_rate
   }));
 
   return (
